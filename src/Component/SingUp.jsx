@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const SignUp = () => {
 
 
-    const {createUser} = useAuth();
+    const {createUser, updateUserInfo} = useAuth();
  
 
      const handleSingUpBtn = (e) =>{
@@ -25,6 +25,10 @@ const SignUp = () => {
             .then(result =>{
                 console.log(result.user);
                 toast.success(' sucesfully created users✔😊👌')
+                // update user
+                updateUserInfo(name, email)
+ 
+            
             })
             .catch(error =>{
              console.error(error)
