@@ -8,6 +8,8 @@ import AuthProvider from './AuthProvider/AuthProvider.jsx';
 // import react tost
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// toltip
+import 'react-tooltip/dist/react-tooltip.css'
 
 
  

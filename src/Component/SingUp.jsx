@@ -26,7 +26,7 @@ const SignUp = () => {
                 console.log(result.user);
                 toast.success(' sucesfully created users✔😊👌')
                 // update user
-                updateUserInfo(name, email)
+                updateUserInfo(name,  photo)
  
             
             })

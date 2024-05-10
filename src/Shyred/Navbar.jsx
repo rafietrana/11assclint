@@ -2,8 +2,19 @@
 import logo from '../assets/mainimage.svg'
 import { FaUser } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import useAuth from '../Hook/useAuth/useAuth';
+// import toltip
+import 'react-tooltip/dist/react-tooltip.css'
 
 const Navbar = () => {
+  const {user,logout} = useAuth();
+
+
+
+  console.log('now user value is ', user);
+
+
+ 
  
     const menu =<>
         <li > <NavLink to={'/'}>Home</NavLink> </li>
@@ -40,7 +51,17 @@ const Navbar = () => {
 
 
 
-
+   const handleLogutBtn =() =>{
+    console.log('alhamdulillah your logut button is now working');
+    logout()
+    .then(result =>{
+      console.log(result.user);
+      console.log('alhamulillah sucesfully logout user ');
+    })
+    .catch(error =>{
+          console.error(error)
+    })
+}
 
 
  
@@ -72,10 +93,28 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-4 ">
-    <Link  to={'/login'}>
-    <a className="md:p-4 p-2 text-sm md:text-xl cursor-pointer rounded-lg bg-green-500 text-white font-semibold flex gap-2 items-center justify-center"><span><FaUser /></span>Login</a></Link>
+    {
+      user ? (  <>
+      
+            <div className="avatar" title={user?.displayName ? user?.displayName : <p> Not Found Name</p>}>
+  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+    <img src={user?.photoURL}/>
+  </div>
+</div>
+        <Link  onClick={handleLogutBtn}>
+      <a className="md:p-4 p-2 text-sm md:text-xl cursor-pointer rounded-lg bg-green-500 text-white font-semibold flex gap-2 items-center justify-center"><span><FaUser /></span>Logout</a></Link>
+
+      </>
+      
+    ) : (    <Link  to={'/login'}>
+    <a className="md:p-4 p-2 text-sm md:text-xl cursor-pointer rounded-lg bg-green-500 text-white font-semibold flex gap-2 items-center justify-center"><span><FaUser /></span>Login</a></Link>)
+    }
+  
+
+
+    
     <Link to={'/singup'}>
-    <a className="md:p-4 p-2 text-sm md:text-xl cursor-pointer rounded-lg bg-[#0B4127] text-white font-semibold flex gap-2 items-center justify-center"><span><FaUser /></span>SingUp Now</a></Link>
+    <a className="md:p-4 p-2 text-sm md:text-xl cursor-pointer rounded-lg bg-[#0B4127] text-white font-semibold flex gap-2 items-center justify-center"><span><FaUser /></span>SingUp </a></Link>
 
   </div>
 </div>
