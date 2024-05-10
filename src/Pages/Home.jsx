@@ -1,4 +1,5 @@
  
+import JobsByCategory from "../Component/JobsByCategory/JobsByCategory";
 import Sliders from "../Component/sliders";
 import useAuth from "../Hook/useAuth/useAuth";
 import Navbar from "../Shyred/Navbar";
@@ -14,6 +15,7 @@ const Home = () => {
         <div>
             <Navbar></Navbar>
             <Sliders></Sliders>
+            <JobsByCategory></JobsByCategory>
         </div>
     );
 };

@@ -10,6 +10,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // toltip
 import 'react-tooltip/dist/react-tooltip.css'
+// date
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 
  

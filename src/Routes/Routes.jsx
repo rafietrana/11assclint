@@ -3,6 +3,8 @@ import Layout from "../Layout/Layout";
 import Home from "../Pages/Home";
 import Login from "../Component/Login/Login";
  import SingUp from '../Component/SingUp'
+import AddJob from "../Component/AddJob/AddJob";
+ 
  
  
  
@@ -23,9 +25,14 @@ const router = createBrowserRouter([
           element: <Login></Login>
         },
         {
-          path: 'singup',
+          path: '/singup',
           element: <SingUp></SingUp>
+        },
+        {
+          path: '/addjob',
+          element: <AddJob></AddJob>
         }
+ 
  
       ]
     },

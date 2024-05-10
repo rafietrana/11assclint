@@ -13,7 +13,7 @@ console.log('user photo', user?.photoURL);
     <li  > <NavLink to={'/'}>Home</NavLink> </li>
     <li> <NavLink>All Jobs</NavLink> </li>
     <li> <NavLink>Applied Jobs</NavLink> </li>
-    <li> <NavLink>Add A Jobs</NavLink> </li>
+    <li> <NavLink to={'/addjob'}>Add A Jobs</NavLink> </li>
     <li> <NavLink>My Jobs</NavLink> </li>
 
 </>
