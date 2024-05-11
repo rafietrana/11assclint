@@ -1,4 +1,5 @@
  
+import Find from "../Component/JobsByCategory/Find";
 import JobsByCategory from "../Component/JobsByCategory/JobsByCategory";
 import Sliders from "../Component/sliders";
 import useAuth from "../Hook/useAuth/useAuth";
@@ -16,6 +17,7 @@ const Home = () => {
             <Navbar></Navbar>
             <Sliders></Sliders>
             <JobsByCategory></JobsByCategory>
+            <Find></Find>
         </div>
     );
 };
