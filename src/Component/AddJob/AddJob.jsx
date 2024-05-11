@@ -2,73 +2,64 @@ import React, { useState } from "react";
 import NabBarAll from "./../../Shyred/NabBarAll/NabBarAll";
 import ReactDatePicker from "react-datepicker";
 import useAuth from "../../Hook/useAuth/useAuth";
+import axios from "axios";
+import { toast } from "react-toastify";
+ 
 
 const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const {user} = useAuth();
+  const { user } = useAuth();
+
+  const handleAddJobBtn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const bannarImg = form.bannarImg?.value;
+    const jobTitle = form.jobTitle?.value;
+    const userName = form.userName?.value;
+    const userEmail = form.email?.value;
+    const minPrice = form.minPrice?.value;
+    const maxPrice = form.maxPrice?.value;
+    const postDate = form.postDate?.value;
+    const jobCategory = form.jobCategory?.value;
+    const applicantsNumber = form.applicantsNumber?.value;
+    const applicationDeadline = startDate?.toLocaleDateString();
+    const jobDescription = form.jobDescription?.value;
+
+    const jobInfo = {
+      bannarImg,
+      jobTitle,
+      userName,
+      userEmail,
+      minPrice,
+      maxPrice,
+      postDate,
+      jobCategory,
+      applicantsNumber,
+      applicationDeadline,
+      jobDescription
+    };
+
+    console.log(jobInfo);
 
 
+     axios.post('http://localhost:5000/jobpost', jobInfo)
+     .then(res =>{
+      console.log(res.data);
+      if(res.data?.insertedId){
+        toast.success('sucessfully Job Added')
+      }
+     })
 
-    
-const handleAddJobBtn =(e) =>{
-  e.preventDefault();
-     const form = e.target;
-     const bannarImg = form.bannarImg?.value;
-     const jobTitle = form.jobTitle?.value;
-     const userName = form.userName?.value;
-     const  userEmail = form.email?.value;
-     const minPrice = form.minPrice?.value;
-     const maxPrice = form.maxPrice?.value;
-     const postDate = form.postDate?.value;
-     const jobCategory = form.jobCategory?.value;
-     const applicantsNumber = form.applicantsNumber?.value;
-     const applicationDeadline = startDate?.toLocaleDateString();
-
-
-
- const jobInfo ={
-  bannarImg,
-  jobTitle,
-  userName,
-  userEmail,
-  minPrice,
-  maxPrice,
-  postDate,
-  jobCategory,
-  applicantsNumber,
-  applicationDeadline
   
-
- }
-
-
-
-
-
- console.log(jobInfo);
-
-
-
-
-
-    
- 
-     
-
-
-
- 
-     
-
-}
+  };
 
   return (
     <>
       <NabBarAll></NabBarAll>
-      <div className="w-full h-screen flex flex-col justify-center items-center">
+      <div className="w-full h-[900px] flex flex-col justify-center items-center">
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
           <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-          Most Popular Jobs
+            Most Popular Jobs
           </h2>
 
           <form onSubmit={handleAddJobBtn}>
@@ -81,7 +72,7 @@ const handleAddJobBtn =(e) =>{
                   Bannar Image
                 </label>
                 <input
-                required
+                  required
                   id="bannarImg"
                   name="bannarImg"
                   type="text"
@@ -97,7 +88,7 @@ const handleAddJobBtn =(e) =>{
                   Job Title
                 </label>
                 <input
-                required
+                  required
                   id="jobTitle"
                   type="text"
                   name="jobTitle"
@@ -113,7 +104,7 @@ const handleAddJobBtn =(e) =>{
                   User Name
                 </label>
                 <input
-                required
+                  required
                   id="userName"
                   type="text"
                   name="userName"
@@ -131,7 +122,7 @@ const handleAddJobBtn =(e) =>{
                   User Email
                 </label>
                 <input
-                required
+                  required
                   id="usersEmail"
                   type="email"
                   name="email"
@@ -148,7 +139,7 @@ const handleAddJobBtn =(e) =>{
                   Minimam(Salery Range)
                 </label>
                 <input
-                required
+                  required
                   id="userEmail"
                   type="text"
                   name="minPrice"
@@ -163,7 +154,7 @@ const handleAddJobBtn =(e) =>{
                   Maximum (Salery Range)
                 </label>
                 <input
-                required
+                  required
                   id="userEmail"
                   name="maxPrice"
                   type="text"
@@ -178,7 +169,7 @@ const handleAddJobBtn =(e) =>{
                   Posting Date
                 </label>
                 <input
-                required
+                  required
                   id="userEmail"
                   type="date"
                   name="postDate"
@@ -191,8 +182,13 @@ const handleAddJobBtn =(e) =>{
                   htmlFor="userEmail"
                 >
                   Application Deadline
-                </label><br />
-                <ReactDatePicker  className="py-3 px-3 border " selected={startDate} onChange={(date) => setStartDate(date)} />
+                </label>
+                <br />
+                <ReactDatePicker
+                  className="py-3 px-3 border "
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
               </div>
               <div>
                 <label
@@ -200,13 +196,18 @@ const handleAddJobBtn =(e) =>{
                   htmlFor="userEmail"
                 >
                   Job Category
-                
                 </label>
                 <br />
-     
 
-                <select  name="jobCategory" id="cars" className="w-full border px-3 py-2 outline-none" required>
-                  <option value="" disabled selected >Select Options </option>
+                <select
+                  name="jobCategory"
+                  id="cars"
+                  className="w-full border px-3 py-2 outline-none"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select Options{" "}
+                  </option>
                   <option value="On_Site">On Site </option>
                   <option value="Remote">Remote</option>
                   <option value="Part_Time">Part Time</option>
@@ -214,10 +215,25 @@ const handleAddJobBtn =(e) =>{
                 </select>
               </div>
               <div>
-                <label htmlFor="applicationNumber">Applicants Number </label><br />
-                <input required className="border px-3 py-2 flex items-center" name="applicantsNumber" type="text" defaultValue={0} disabled />
+                <label htmlFor="applicationNumber">Applicants Number </label>
+                <br />
+                <input
+                  required
+                  className="border px-3 py-2 flex items-center"
+                  name="applicantsNumber"
+                  type="text"
+                  defaultValue={0}
+                  disabled
+                />
               </div>
+
             </div>
+            <div className="my-5">
+                <label htmlFor="jobDescription"> Job Description</label><br />
+                <textarea  className="border col-span-2 w-full outline-none mt-5 p-6" name="jobDescription" id="jobDescription">
+
+                </textarea>
+              </div>
 
             <div className="flex justify-end mt-6">
               <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">

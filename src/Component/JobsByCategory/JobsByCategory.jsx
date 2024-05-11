@@ -1,9 +1,27 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Card from './Card';
 
 const JobsByCategory = () => {
+   const [JobCardData, setJobCardData] = useState([]);
+
+
+   console.log('JobCardData', JobCardData);
+
+    useEffect(()=>{
+         axios('http://localhost:5000/getJobCard')
+         .then(res =>{
+             console.log(res.data);
+            setJobCardData(res.data)
+         })
+    },[])
+
+
     return ( 
         <div className='w-9/12 mx-auto my-28 border-none'>
+
 
 
                <div className='w-full flex flex-col mb-8 space-y-3 justify-center items-center'>
@@ -21,7 +39,12 @@ const JobsByCategory = () => {
     </TabList>
 
     <TabPanel>
-      <h2>All Jobs</h2>
+   <div className='grid grid-cols-3 gap-5  my-5'>
+   {
+      JobCardData.map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+    }
+   </div>
+
     </TabPanel>
     <TabPanel>
       <h2 className=''>On Sites Job</h2>
