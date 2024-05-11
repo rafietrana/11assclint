@@ -1,4 +1,6 @@
  
+ 
+import Hire from "../Component/Hire/Hire";
 import Find from "../Component/JobsByCategory/Find";
 import JobsByCategory from "../Component/JobsByCategory/JobsByCategory";
 import Sliders from "../Component/sliders";
@@ -18,6 +20,7 @@ const Home = () => {
             <Sliders></Sliders>
             <JobsByCategory></JobsByCategory>
             <Find></Find>
+            <Hire></Hire>
         </div>
     );
 };
