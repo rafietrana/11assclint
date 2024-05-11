@@ -9,12 +9,16 @@ const NabBarAll = () => {
    const {user, logout} = useAuth();
 console.log('user photo', user?.photoURL);
 
-    const menu =<>
-    <li  > <NavLink to={'/'}>Home</NavLink> </li>
-    <li> <NavLink>All Jobs</NavLink> </li>
-    <li> <NavLink>Applied Jobs</NavLink> </li>
-    <li> <NavLink to={'/addjob'}>Add A Jobs</NavLink> </li>
-    <li> <NavLink>My Jobs</NavLink> </li>
+const menu =<>
+<li > <NavLink to={'/'} className={({ isActive }) =>
+              isActive ? " text-green-500 font-bold border-b-2 border-red-500" : "font-semibold"
+            }>Home</NavLink> </li>
+<li> <NavLink>All Jobs</NavLink> </li>
+<li> <NavLink>Applied Jobs</NavLink> </li>
+<li> <NavLink to={'/addjob'} className={({ isActive }) =>
+              isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
+            }>Add A Jobs</NavLink> </li>
+<li> <NavLink>My Jobs</NavLink> </li>
 
 </>
 

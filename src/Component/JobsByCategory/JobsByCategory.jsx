@@ -2,8 +2,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const JobsByCategory = () => {
-    return (
-        <div className='w-11/12 mx-auto my-28'>
+    return ( 
+        <div className='w-9/12 mx-auto my-28 border-none'>
 
 
                <div className='w-full flex flex-col mb-8 space-y-3 justify-center items-center'>
@@ -13,11 +13,11 @@ const JobsByCategory = () => {
                </div>
               <Tabs >
     <TabList>
-      <Tab   ><span className='font-semibold bg-gray-50'>All Jobs  </span></Tab>
-      <Tab ><span className='font-semibold bg-gray-50 '>OnSite Jobs </span></Tab>
-      <Tab ><span className='font-semibold bg-gray-50 '>Remote Jobs </span></Tab>
-      <Tab ><span className='font-semibold bg-gray-50 '> Hybrid Jobs  </span></Tab>
-      <Tab ><span className='font-semibold bg-gray-50 '> Part Time Jobs  </span></Tab>
+      <Tab   ><span className=' font-poppin p-2'>All Jobs  </span></Tab>
+      <Tab ><span className=' font-poppin p-2'>OnSite Jobs </span></Tab>
+      <Tab ><span className=' font-poppin p-2'>Remote Jobs </span></Tab>
+      <Tab ><span className=' font-poppin p-2'> Hybrid Jobs  </span></Tab>
+      <Tab ><span className=' font-poppin p-2'> Part Time Jobs  </span></Tab>
     </TabList>
 
     <TabPanel>
