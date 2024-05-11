@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         {
           path: '/addjob',
           element:   <PrivetRoute><AddJob></AddJob></PrivetRoute>
+        },
+        {
+          path: '/viewdetails/:id',
+          element: <p>This is Dynamic View Details page alhamulillah</p>
         }
  
  

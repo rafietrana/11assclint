@@ -1,7 +1,13 @@
+import { Link } from "react-router-dom";
+
  
 
 const Card = ({dataCardJob}) => {
     console.log('from card', dataCardJob);
+
+
+
+ 
     
     return (
         <div>
@@ -25,11 +31,16 @@ const Card = ({dataCardJob}) => {
 
     <div className="flex items-center justify-between mt-4">
   <div>
-    <button className="font-medium px-3 py-2 rounded-lg bg-gray-100">View Details</button>
+    <Link to={`/viewdetails/${dataCardJob?._id}`}>
+    <button   className="font-medium px-3 py-2 rounded-lg bg-gray-100">View Details</button>
+    </Link>
+
+
   </div>
 
         <div className="flex items-center">
               <img src="" alt="" />
+
             <a className="font-normal text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link"><span className="font-medium"> Author : </span>{dataCardJob?.userName}</a>
         </div>
     </div>

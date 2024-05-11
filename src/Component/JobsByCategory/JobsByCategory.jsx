@@ -46,18 +46,40 @@ const JobsByCategory = () => {
    </div>
 
     </TabPanel>
-    <TabPanel>
-      <h2 className=''>On Sites Job</h2>
+    <TabPanel >
+      <div className='grid grid-cols-3 gap-5  my-5'>
+      {
+        JobCardData.filter(j => j.jobCategory == 'On_Site').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+      }
+      </div>
+
+ 
     </TabPanel>
     <TabPanel>
-      <h2>Remote Job</h2>
+    <div className='grid grid-cols-3 gap-5  my-5'>
+    {
+        JobCardData.filter(j => j.jobCategory == 'Remote').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+      }
+       </div>
+    </TabPanel>
+ 
+    <TabPanel>
+    <div className='grid grid-cols-3 gap-5  my-5'>
+    {
+        JobCardData.filter(j => j.jobCategory == 'Hybrid').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+      }
+       </div>
     </TabPanel>
     <TabPanel>
-      <h2>Hybrid  Job</h2>
+    <div className='grid grid-cols-3 gap-5  my-5'>
+
+    {
+        JobCardData.filter(j => j.jobCategory == 'Part_Time').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+      }
+       </div>
+
     </TabPanel>
-    <TabPanel>
-      <h2>Part Time Jobs</h2>
-    </TabPanel>
+ 
   </Tabs>
         </div>
     );
