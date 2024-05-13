@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
+import axios from "axios";
 
 const JobDetails = () => {
   const data = useLoaderData();
@@ -8,10 +9,43 @@ const JobDetails = () => {
 
 
   const handleApplyedSubmitButton = (e) =>{
+    e.preventDefault();
          const form = e.target;
          const userName = form.name.value;
-        
+        const userEmail = form.email.value;
+        const resumi = form.cv.value;
+
+
+
+
+    const appliedInfo = {
+        userName,
+        userEmail,
+        resumi
+    }
+
+
+ axios.post('http://localhost:5000/setApplied', appliedInfo)
+ .then(res =>{
+    console.log('updated data is', res.data);
+
+
+
+
+    if(res.data.insertedId){
+    axios.patch(`http://localhost:5000/inccount/${data?._id}`)
+    .then(res =>{
+        console.log(res.data);
+        console.log('alhamdulillah sucessfully updated data mashallah');
+    })
+    }
+ })
+
+
+
   }
+
+
 
   return (
     <>
@@ -29,18 +63,18 @@ const JobDetails = () => {
                 ✕
               </button>
             </form>
-            <form className="my-5 space-y-5 " >
+            <form className="my-5 space-y-5 " onSubmit={handleApplyedSubmitButton} >
                 <div>
                 <label   htmlFor="name">Name</label> <br />
-                <input type="text"  defaultValue={data?.userName}  className="px-3 py-2 w-full outline-none border" />
+                <input type="text" name='name'  defaultValue={data?.userName}  className="px-3 py-2 w-full outline-none border" />
                 </div>
                 <div>
                 <label htmlFor="email">Email</label> <br />
-                <input type="text" defaultValue={data?.userEmail}   className="px-3 py-2 w-full outline-none border" />
+                <input type="text" name="email" defaultValue={data?.userEmail}   className="px-3 py-2 w-full outline-none border" />
                 </div>
                 <div>
                 <label htmlFor="resumiLink">Resumi Link</label> <br />
-                <input type="text" className="px-3 py-2 w-full outline-none border" />
+                <input type="text" name="cv" className="px-3 py-2 w-full outline-none border" />
                 </div>
                 <button className="bg-gray-100 px-3 py-2 rounded-lg">Submit</button>
 

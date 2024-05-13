@@ -9,6 +9,7 @@ import Blog from "../Component/Blog/Blog";
 import BlogDetails from "../Component/BlogDetails/BlogDetails";
 import AllJob from "../Component/AllJob/AllJob";
 import JobDetails from "../Component/JobDetails/JobDetails";
+import MyJob from "../Component/MyJob/MyJob";
  
  
  
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
           path: '/job/:id',
           element: <PrivetRoute><JobDetails></JobDetails></PrivetRoute>,
           loader: ({params})=>fetch(`http://localhost:5000/getjob/${params.id}`)
+        },
+        {
+            path: '/myjob',
+            element: <MyJob></MyJob>
         }
  
  

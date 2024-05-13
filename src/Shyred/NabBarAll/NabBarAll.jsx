@@ -20,7 +20,9 @@ const menu =<>
 <li> <NavLink to={'/addjob'} className={({ isActive }) =>
               isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
             }>Add A Jobs</NavLink> </li>
-<li> <NavLink>My Jobs</NavLink> </li>
+<li> <NavLink to={'/myjob'}  className={({ isActive }) =>
+              isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
+            }>My Jobs</NavLink> </li>
 <li> <NavLink to={'/blog'} className={({ isActive }) =>
                       isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
                     }>Blogs </NavLink> </li>
