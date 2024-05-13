@@ -11,7 +11,8 @@ const BlogsCard = ({dataBlogs}) => {
            <img className="min-h-[300px]" src={dataBlogs?.bannerImage} alt="" />
 
     <div className="p-6">
-        <div className="min-h">
+        <div className="h-[100px]">
+
             <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">Product</span>
             <a href="#" className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabIndex="0" role="link">{dataBlogs?.title}</a>
             {/* <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.</p> */}
