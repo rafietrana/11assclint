@@ -31,7 +31,7 @@ const Card = ({dataCardJob}) => {
 
     <div className="flex items-center justify-between mt-4">
   <div>
-    <Link to={`/viewdetails/${dataCardJob?._id}`}>
+    <Link to={`/job/${dataCardJob?._id}`}>
     <button   className="font-medium px-3 py-2 rounded-lg bg-gray-100">View Details</button>
     </Link>
 

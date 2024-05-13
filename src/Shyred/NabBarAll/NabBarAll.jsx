@@ -13,13 +13,18 @@ const menu =<>
 <li > <NavLink to={'/'} className={({ isActive }) =>
               isActive ? " text-green-500 font-bold border-b-2 border-red-500" : "font-semibold"
             }>Home</NavLink> </li>
-<li> <NavLink>All Jobs</NavLink> </li>
+        <li> <NavLink to={'/alljob'}   className={({ isActive }) =>
+                      isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
+                    } >All Jobs</NavLink> </li>
 <li> <NavLink>Applied Jobs</NavLink> </li>
 <li> <NavLink to={'/addjob'} className={({ isActive }) =>
               isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
             }>Add A Jobs</NavLink> </li>
 <li> <NavLink>My Jobs</NavLink> </li>
-
+<li> <NavLink to={'/blog'} className={({ isActive }) =>
+                      isActive ? " text-green-500 font-bold border-b-2 border-red-700" : "font-semibold"
+                    }>Blogs </NavLink> </li>
+ 
 </>
 
 
