@@ -26,7 +26,7 @@ const Card = ({dataCardJob}) => {
 
     <span className="text-sm font-light text-gray-600 dark:text-gray-400"><span className="font-medium">Application Deadline </span>{dataCardJob?.applicationDeadline}</span><br />
 
-    <span className="text-sm font-light text-gray-600 dark:text-gray-400"><span className="font-medium">Salary Range </span>{`  $${dataCardJob?.minPrice} - $${dataCardJob?.maxPrice}`}</span>
+    <span className="text-sm font-light text-gray-600 dark:text-gray-400"><span className="font-medium">Salary Range </span>{`  $${dataCardJob?.minPrice} - $${dataCardJob?.maxPrice}`}</span><br />
     <span className="text-sm font-light text-gray-600 dark:text-gray-400"><span className="font-medium">Total Applications Number </span>{dataCardJob?.applicantsNumber}</span><br />
 
     <div className="flex items-center justify-between mt-4">

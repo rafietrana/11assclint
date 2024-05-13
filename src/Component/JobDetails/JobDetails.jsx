@@ -37,6 +37,9 @@ const JobDetails = () => {
     .then(res =>{
         console.log(res.data);
         console.log('alhamdulillah sucessfully updated data mashallah');
+        if(res.data.modifiedCount > 0){
+            window.location.reload();
+        }
     })
     }
  })
