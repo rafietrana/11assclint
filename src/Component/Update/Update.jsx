@@ -4,6 +4,7 @@ import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
  
 
@@ -50,9 +51,28 @@ const Update = () => {
         };
     
         console.log('updateInfo', updateInfo);
-    
+        
+
+        axios.put(`http://localhost:5000/updatedata/${defultData?._id}`, updateInfo)
+        .then(res =>{
+            console.log(res.data);
+
+
+            if(res.data.modifiedCount > 0){
+                toast.success('sucessfully updated your data')
+            }
+        })
  
       };
+
+
+
+    //   const handleDeleteBtn = (id) =>{
+    //     axios.delete(`http://localhost:5000/deletedata/${id}`)
+    //     .then(res =>{
+    //         console.log(res.data);
+    //     })
+    //   }
 
     const params = useParams()
             useEffect(()=>{
