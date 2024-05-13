@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../Hook/useAuth/useAuth";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const MyJob = () => {
@@ -45,11 +46,12 @@ const MyJob = () => {
             myAddedData.map(dataAddedMy =>(
                 <tr>
                 <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td><button className="px-3 py-2 rounded-lg bg-green-300 ">Update </button></td>
-                <td><button className="px-3 py-2 rounded-lg bg-red-300">Delete</button></td>
+                <td>{dataAddedMy?.jobTitle}</td>
+                <td>{dataAddedMy?.postDate}</td>
+                <td>{dataAddedMy?.applicationDeadline}</td>
+                <Link to={`/updatejob/${dataAddedMy?._id}`}>         <td><button className="px-3 py-2 rounded-lg bg-green-300  text-white">Update </button></td></Link>
+       
+                <td><button className="px-3 py-2 rounded-lg bg-red-300 text-whtie">Delete</button></td>
               </tr>
             ))
         }

@@ -10,6 +10,7 @@ import BlogDetails from "../Component/BlogDetails/BlogDetails";
 import AllJob from "../Component/AllJob/AllJob";
 import JobDetails from "../Component/JobDetails/JobDetails";
 import MyJob from "../Component/MyJob/MyJob";
+import Update from "../Component/Update/Update";
  
  
  
@@ -64,6 +65,13 @@ const router = createBrowserRouter([
         {
             path: '/myjob',
             element: <MyJob></MyJob>
+        },
+
+        {
+          path: '/updatejob/:id',
+          element: <Update></Update>,
+ 
+          
         }
  
  
