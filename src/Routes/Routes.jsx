@@ -12,6 +12,7 @@ import JobDetails from "../Component/JobDetails/JobDetails";
 import MyJob from "../Component/MyJob/MyJob";
 import Update from "../Component/Update/Update";
 import JobApplied from "../Component/JobApplied/JobApplied";
+import ErrorPage from "../Component/ErrorPage/ErrorPage";
  
  
  
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
 
     {
       path: "/",
-      element:   <Layout></Layout>   ,
+      element:   <Layout></Layout> ,
+      errorElement: <ErrorPage></ErrorPage>,
       children:[
         {
             path: '/',
