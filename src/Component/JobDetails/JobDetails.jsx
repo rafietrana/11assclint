@@ -23,6 +23,8 @@ const JobDetails = () => {
     const userName = form.name.value;
     const userEmail = form.email.value;
     const resumi = form.cv.value;
+    const jobCategorys = data?.jobCategory;
+    const jobTitles = data?.jobTitle;
 
 
 
@@ -32,7 +34,7 @@ const JobDetails = () => {
 
   
 
-    if (user?.email == userEmail) {
+    if (user?.email == data?.userEmail) {
       return toast.error("you are not permited for this job");
     }
 
@@ -40,6 +42,8 @@ const JobDetails = () => {
       userName,
       userEmail,
       resumi,
+      jobCategorys,
+      jobTitles
     };
 
     axios.post("http://localhost:5000/setApplied", appliedInfo).then((res) => {
@@ -52,7 +56,11 @@ const JobDetails = () => {
             console.log(res.data);
             console.log("alhamdulillah sucessfully updated data mashallah");
             if (res.data.modifiedCount > 0) {
-              window.location.reload();
+              toast.success('sucessfully updated data')
+              setTimeout(()=>{
+                window.location.reload();
+              }, 2000)
+          
             }
           });
       }
@@ -93,7 +101,7 @@ const JobDetails = () => {
                 <input
                   type="text"
                   name="email"
-                  defaultValue={data?.userEmail}
+                  defaultValue={user?.email}
                   className="px-3 py-2 w-full outline-none border"
                 />
               </div>

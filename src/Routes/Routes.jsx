@@ -11,6 +11,7 @@ import AllJob from "../Component/AllJob/AllJob";
 import JobDetails from "../Component/JobDetails/JobDetails";
 import MyJob from "../Component/MyJob/MyJob";
 import Update from "../Component/Update/Update";
+import JobApplied from "../Component/JobApplied/JobApplied";
  
  
  
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
           element: <Update></Update>,
  
           
+        },
+        {
+          path: '/jobapplied',
+          element:<JobApplied></JobApplied>
         }
  
  
