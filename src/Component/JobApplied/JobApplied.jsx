@@ -39,7 +39,8 @@ const handleFilterBtn = (e) =>{
         <div className="w-9/12 mx-auto">
         <div className="overflow-x-auto">
             <div className="my-10">
-               <label for="cars">Choose a car:</label>
+               <label for="cars" className="">Filter By JobCategory:</label> <br /><br />
+
 
 <select onChange={(e)=>setFilterValue(e.target.value)}  name="filter" id="filter" className="outline-none border px-3 py-2">
   <option   value="">Select Option</option>
@@ -48,8 +49,8 @@ const handleFilterBtn = (e) =>{
   <option   value="Part_Time">Part_Time</option>
   <option   value="Hybrid">Hybrid</option>
 </select>
-            </div>
-  <table className="table">
+            </div >
+  <table className="table" >
     {/* head */}
     <thead>
       <tr>
