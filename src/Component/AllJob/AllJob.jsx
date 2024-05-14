@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const AllJob = () => {
   const [tableData, setTableData] = useState([]);
@@ -17,12 +19,32 @@ const AllJob = () => {
       });
   }, [searchText]);
 
+
+  // tanstack query start
+
+
+  // const {  data, refetch } = useQuery({
+  //   queryKey: ['reposData'],
+  //   queryFn: () =>
+  //        axios(`http://localhost:5000/getTableCard?search=${searchText}`)
+  //   .then(res =>{
+  //     return res.data;
+  //   })
+  // })
+
+
+  // tanstack query end
+
   const handleSearchBtn = (e) => {
+
     e.preventDefault();
     console.log("alhamdulillah your button is now working mashallh");
 
     const text = e.target.search.value;
+ 
     setSearchText(text);
+    refetch();
+   
   };
 
   console.log("search text is", searchText);
@@ -58,7 +80,7 @@ const AllJob = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {tableData.map((dataTable, idx) => (
+              {tableData?.map((dataTable, idx) => (
                 <tr>
                   <th>{idx + 1}</th>
                   <td>{dataTable?.jobTitle}</td>

@@ -13,6 +13,12 @@ const Blog = () => {
          .then(res => res.json())
          .then(data => setBlogsData(data))
     })
+
+
+
+
+
+    // tanstack query
     return (
         <>
         <NabBarAll></NabBarAll>

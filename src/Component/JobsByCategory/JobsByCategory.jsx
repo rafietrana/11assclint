@@ -3,20 +3,48 @@ import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Card from './Card';
+import { useQuery } from '@tanstack/react-query';
 
 const JobsByCategory = () => {
-   const [JobCardData, setJobCardData] = useState([]);
+  //  const [JobCardData, setJobCardData] = useState([]);
 
 
-   console.log('JobCardData', JobCardData);
+  //  console.log('JobCardData', JobCardData);
 
-    useEffect(()=>{
-         axios('http://localhost:5000/getJobCard')
-         .then(res =>{
-             console.log(res.data);
-            setJobCardData(res.data)
-         })
-    },[])
+  //   useEffect(()=>{
+  //        axios('http://localhost:5000/getJobCard')
+  //        .then(res =>{
+  //            console.log(res.data);
+  //           setJobCardData(res.data)
+  //        })
+  //   },[])
+
+
+
+
+
+
+    // tanstack query
+    const { isLoading, data } = useQuery({
+      queryKey: ['repoData'],
+      queryFn: () =>
+        axios('http://localhost:5000/getJobCard')
+      .then(res =>{
+          return res.data;
+      })
+    })
+
+
+
+
+    if(isLoading){
+      return (
+        <div className='w-full h-screen flex justify-center items-center'>
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      )
+    }
+    
 
 
     return ( 
@@ -41,7 +69,7 @@ const JobsByCategory = () => {
     <TabPanel>
    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5  my-5'>
    {
-      JobCardData.map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+      data?.map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
     }
    </div>
 
@@ -49,7 +77,7 @@ const JobsByCategory = () => {
     <TabPanel >
       <div className='grid grid-cols-3 gap-5  my-5'>
       {
-        JobCardData.filter(j => j.jobCategory == 'On_Site').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+        data?.filter(j => j.jobCategory == 'On_Site').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
       }
       </div>
 
@@ -58,7 +86,7 @@ const JobsByCategory = () => {
     <TabPanel>
     <div className='grid grid-cols-3 gap-5  my-5'>
     {
-        JobCardData.filter(j => j.jobCategory == 'Remote').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+        data?.filter(j => j.jobCategory == 'Remote').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
       }
        </div>
     </TabPanel>
@@ -66,7 +94,7 @@ const JobsByCategory = () => {
     <TabPanel>
     <div className='grid grid-cols-3 gap-5  my-5'>
     {
-        JobCardData.filter(j => j.jobCategory == 'Hybrid').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+        data?.filter(j => j.jobCategory == 'Hybrid').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
       }
        </div>
     </TabPanel>
@@ -74,7 +102,7 @@ const JobsByCategory = () => {
     <div className='grid grid-cols-3 gap-5  my-5'>
 
     {
-        JobCardData.filter(j => j.jobCategory == 'Part_Time').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
+        data?.filter(j => j.jobCategory == 'Part_Time').map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
       }
        </div>
 

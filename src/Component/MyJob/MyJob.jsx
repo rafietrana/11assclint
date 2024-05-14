@@ -6,17 +6,33 @@ import { Link } from "react-router-dom";
  
 import Swal from 'sweetalert2';  
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 const MyJob = () => {
-    const [myAddedData, setMyAddedData] = useState([]);
+    // const [myAddedData, setMyAddedData] = useState([]);
     const { user } = useAuth();
     
-    useEffect(() => {
-        axios(`http://localhost:5000/getmyjob/${user?.email}`)
-        .then(res => {
-            setMyAddedData(res?.data);
-        });
-    });  
+    // useEffect(() => {
+    //     axios(`http://localhost:5000/getmyjob/${user?.email}`)
+    //     .then(res => {
+    //         setMyAddedData(res?.data);
+    //     });
+    // });  
+
+    // tanstack query  start 
+
+
+
+    const { isPending, error, data } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () => 
+            axios.get(`http://localhost:5000/getmyjob/${user?.email}`)
+                .then((res) => res.data)
+    });
+
+
+    // tanstack query end
+
 
     const handleDeleteBtn = (id) => {
         Swal.fire({
@@ -66,7 +82,7 @@ const MyJob = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {myAddedData.map((dataAddedMy, idx) => (
+                            {data?.map((dataAddedMy, idx) => (
                                 <tr key={dataAddedMy._id}>
                                     <th>{idx + 1}</th>
                                     <td>
