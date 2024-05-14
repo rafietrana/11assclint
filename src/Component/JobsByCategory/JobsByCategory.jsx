@@ -26,7 +26,7 @@ const JobsByCategory = () => {
 
                <div className='w-full flex flex-col mb-8 space-y-3 justify-center items-center'>
                 <p className='text-orange-600 font-bold font-poppin text-xl'>Job Seeking</p>
-                <p className='font-poppin text-5xl font-bold uppercase '>Find <span className='text-[#029E9D]'>Your Jobs </span></p>
+                <p className='font-poppin lg:text-5xl md:text-3xl text-xl font-bold uppercase '>Find <span className='text-[#029E9D]'>Your Jobs </span></p>
                 <p className='w-5/12 mx-auto text-center'>The job market is constantly evolving, with new opportunities emerging regularly.  </p>
                </div>
               <Tabs >
@@ -39,7 +39,7 @@ const JobsByCategory = () => {
     </TabList>
 
     <TabPanel>
-   <div className='grid grid-cols-3 gap-5  my-5'>
+   <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5  my-5'>
    {
       JobCardData.map(dataCardJob => <Card dataCardJob={dataCardJob}></Card>)
     }

@@ -9,7 +9,7 @@ const Find = () => {
 
             </div>
   
-            <div className="w-9/12 grid grid-cols-3 gap-5 mx-auto">
+            <div className="w-9/12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mx-auto">
             <div className="bg-white px-5 py-11 space-y-5">
                 <p className="font-medium text-2xl">Find Job</p>
                 <h1>Discovering talent doesn't need to be a hassle. Either post a job or let us handle the search for you!</h1>

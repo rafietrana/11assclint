@@ -96,8 +96,8 @@ const Navbar = () => {
       </ul>
     </div>
 
- <div className='w-10 lg:w-52 md:w-20'>
-    <img src={logo} alt="" />
+ <div   >
+    <img   src={logo} alt="" />
  </div>
   </div>
   <div className="navbar-center hidden lg:flex">

@@ -5,7 +5,7 @@ import { FaCaretRight } from "react-icons/fa";
 const Hire = () => {
     return (
         <div className="my-24">
-            <div className="w-9/12 mx-auto  grid grid-cols-2 gap-20  items-center ">
+            <div className="w-9/12 mx-auto  grid lg:grid-cols-2 grid-cols-1 gap-20  items-center ">
                 <div>
                        <img src="https://i.ibb.co/JrMxnjF/cardsTwo.jpg" alt="" />
                 </div>

@@ -16,7 +16,7 @@ const Blog = () => {
     return (
         <>
         <NabBarAll></NabBarAll>
-        <div className="w-10/12 mx-auto grid  grid-cols-3 gap-5  my-5">
+        <div className="w-10/12 mx-auto grid  lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5  my-5">
             {
                blogsData.map(dataBlogs => <BlogsCard dataBlogs={dataBlogs}></BlogsCard>)
             }
