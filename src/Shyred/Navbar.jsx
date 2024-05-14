@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import useAuth from '../Hook/useAuth/useAuth';
 // import toltip
 import 'react-tooltip/dist/react-tooltip.css'
+import axios from 'axios';
 
 const Navbar = () => {
   const {user,logout} = useAuth();
@@ -70,6 +71,7 @@ const Navbar = () => {
     .then(result =>{
       console.log(result.user);
       console.log('alhamulillah sucesfully logout user ');
+      
     })
     .catch(error =>{
           console.error(error)

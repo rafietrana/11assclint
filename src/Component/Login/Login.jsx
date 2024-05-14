@@ -2,40 +2,40 @@ import { Link } from "react-router-dom";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import useAuth from "../../Hook/useAuth/useAuth";
 import { toast } from "react-toastify";
+ 
+ 
 
 const Login = () => {
-  const { loginUser, user, googleLogin} = useAuth();
-  console.log('now user value is', user);
-  
- 
-    const handleGoogleLogin =()=>{
-    
-      googleLogin()
-      .then(result =>{
+  const { loginUser, user, googleLogin } = useAuth();
+  console.log("now user value is", user);
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
         console.log(result.user);
+
+ 
       })
-      .catch(error =>{
+      .catch((error) => {
         console.log(error);
-      })
-    }
+      });
+  };
   const handleLoginBtn = (e) => {
     e.preventDefault();
-     const form = e.target;
+    const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log('email and password is ', email, password);
-     loginUser(email, password)
-     .then(result =>{
-      console.log(result.user);
-      toast.success('sucessfully logged in user😊')
-     })
-     .catch(error =>{
-      console.error(error)
-      toast.error('LoggedIn Faild😣')
-     })
-
-    
-
+    console.log("email and password is ", email, password);
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("sucessfully logged in user😊");
+ 
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("LoggedIn Faild😣");
+      });
   };
   return (
     <>
@@ -48,7 +48,10 @@ const Login = () => {
               <p className="uppercase font-medium text-xl"> Login Now</p>
             </div>
 
-            <div onClick={handleGoogleLogin} className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 ">
+            <div
+              onClick={handleGoogleLogin}
+              className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
+            >
               <div className="px-4 py-2">
                 <svg className="w-6 h-6" viewBox="0 0 40 40">
                   <path
@@ -70,7 +73,7 @@ const Login = () => {
                 </svg>
               </div>
 
-              <span   className="w-5/6 px-4 py-3 font-bold text-center">
+              <span className="w-5/6 px-4 py-3 font-bold text-center">
                 Sign in with Google
               </span>
             </div>

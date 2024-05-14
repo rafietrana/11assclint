@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const SignUp = () => {
 
 
-    const {createUser, updateUserInfo} = useAuth();
+    const {createUser, updateUserInfo, user} = useAuth();
  
 
      const handleSingUpBtn = (e) =>{
@@ -27,6 +27,14 @@ const SignUp = () => {
                 toast.success(' sucesfully created users✔😊👌')
                 // update user
                 updateUserInfo(name,  photo)
+
+
+
+                const  loggedUser = {email: user?.email}
+                axios.post('http://localhost:5000/jwt',loggedUser, {withCredentials: true} )
+                .then(res =>{
+                  console.log('token is ', res.data);
+                })
  
             
             })
