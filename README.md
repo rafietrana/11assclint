@@ -1,8 +1,20 @@
-# React + Vite
+# WorkJone
+##Professional Job Seeking Website
+ 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+### Live Website Link: https://my-assignment--11.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) htmlhtmlFor Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) htmlhtmlFor Fast Refresh
+## Website Features
+- Dynamic  Data Load and show
+- Fully Responsive for all device
+- Not found page added
+- stor data in database
+- Login, singup, google login, gitHub Login Added
+- Protected route added
+- Dark and Light Theme Applied
+- user can add data update data and delete data 
+  
+  
+
+## My Seleceted category name: 1.assignment_category_0003
