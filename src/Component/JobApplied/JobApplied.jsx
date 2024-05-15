@@ -13,7 +13,7 @@ const JobApplied = () => {
 
   useEffect(() => {
     axios(
-      `http://localhost:5000/gets?email=${user?.email}&filter=${filterValue}`
+      `https://my-assignment-11-server-bice.vercel.app/gets?email=${user?.email}&filter=${filterValue}`
     ).then((res) => {
       // console.log("applied data is", res.data);
       setAppliedData(res.data);

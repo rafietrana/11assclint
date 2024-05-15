@@ -13,7 +13,6 @@ import MyJob from "../Component/MyJob/MyJob";
 import Update from "../Component/Update/Update";
 import JobApplied from "../Component/JobApplied/JobApplied";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
- 
 
 const router = createBrowserRouter([
   {
@@ -65,11 +64,17 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/getjob/${params.id}`),
+          fetch(
+            `https://my-assignment-11-server-bice.vercel.app/getjob/${params.id}`
+          ),
       },
       {
         path: "/myjob",
-        element:   <PrivetRoute><MyJob></MyJob></PrivetRoute>
+        element: (
+          <PrivetRoute>
+            <MyJob></MyJob>
+          </PrivetRoute>
+        ),
       },
 
       {

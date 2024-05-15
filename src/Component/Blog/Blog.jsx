@@ -6,7 +6,7 @@ const Blog = () => {
   const [blogsData, setBlogsData] = useState([]);
   // console.log(blogsData);
   useEffect(() => {
-    fetch("http://localhost:5000/getBlogs")
+    fetch("https://my-assignment-11-server-bice.vercel.app/getBlogs")
       .then((res) => res.json())
       .then((data) => setBlogsData(data));
   });

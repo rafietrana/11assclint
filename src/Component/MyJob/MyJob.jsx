@@ -13,7 +13,7 @@ const MyJob = () => {
   const { user } = useAuth();
 
   // useEffect(() => {
-  //     axios(`http://localhost:5000/getmyjob/${user?.email}`)
+  //     axios(`https://my-assignment-11-server-bice.vercel.app/getmyjob/${user?.email}`)
   //     .then(res => {
   //         setMyAddedData(res?.data);
   //     });
@@ -25,7 +25,10 @@ const MyJob = () => {
     queryKey: ["repoData"],
     queryFn: () =>
       axios
-        .get(`http://localhost:5000/getmyjob/${user?.email}`, {withCredentials: true})
+        .get(
+          `https://my-assignment-11-server-bice.vercel.app/getmyjob/${user?.email}`,
+          { withCredentials: true }
+        )
         .then((res) => res.data),
   });
 
@@ -42,15 +45,19 @@ const MyJob = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/deletedata/${id}`).then((res) => {
-          // console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            toast.success("sucessfully deleted data");
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
-          }
-        });
+        axios
+          .delete(
+            `https://my-assignment-11-server-bice.vercel.app/deletedata/${id}`
+          )
+          .then((res) => {
+            // console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              toast.success("sucessfully deleted data");
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            }
+          });
       }
     });
   };

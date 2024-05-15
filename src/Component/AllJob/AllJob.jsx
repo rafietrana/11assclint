@@ -12,7 +12,9 @@ const AllJob = () => {
   // console.log(" table data  is ", tableData);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/getTableCard?search=${searchText}`)
+    fetch(
+      `https://my-assignment-11-server-bice.vercel.app/getTableCard?search=${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setTableData(data);
@@ -24,7 +26,7 @@ const AllJob = () => {
   // const {  data, refetch } = useQuery({
   //   queryKey: ['reposData'],
   //   queryFn: () =>
-  //        axios(`http://localhost:5000/getTableCard?search=${searchText}`)
+  //        axios(`https://my-assignment-11-server-bice.vercel.app/getTableCard?search=${searchText}`)
   //   .then(res =>{
   //     return res.data;
   //   })

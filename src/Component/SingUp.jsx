@@ -24,9 +24,13 @@ const SignUp = () => {
 
         const loggedUser = { email: user?.email };
         axios
-          .post("http://localhost:5000/jwt", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://my-assignment-11-server-bice.vercel.app/jwt",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             // console.log("token is ", res.data);
           });

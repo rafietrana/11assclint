@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 const AddJob = () => {
   const [dedlineDate, setDedlineDate] = useState(new Date());
   const [postingDate, setPostingDate] = useState(new Date());
- 
 
   const { user } = useAuth();
 
@@ -45,12 +44,14 @@ const AddJob = () => {
 
     // console.log(jobInfo);
 
-    axios.post("http://localhost:5000/jobpost", jobInfo).then((res) => {
-      // console.log(res.data);
-      if (res.data?.insertedId) {
-        toast.success("sucessfully Job Added");
-      }
-    });
+    axios
+      .post("https://my-assignment-11-server-bice.vercel.app/jobpost", jobInfo)
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data?.insertedId) {
+          toast.success("sucessfully Job Added");
+        }
+      });
   };
 
   return (

@@ -8,7 +8,7 @@ const BlogDetails = () => {
   // console.log("view data is", viewData);
   const id = param.id;
   useEffect(() => {
-    fetch(`http://localhost:5000/finalcard/${id}`)
+    fetch(`https://my-assignment-11-server-bice.vercel.app/finalcard/${id}`)
       .then((res) => res.json())
       .then((data) => setViewData(data));
   });
