@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
 import useAuth from "../../Hook/useAuth/useAuth";
-
+ 
+import { useReactToPrint } from "react-to-print";
+import { toast } from "react-toastify";
 
 const JobApplied = () => {
   const [appliedData, setAppliedData] = useState([]);
@@ -11,6 +13,17 @@ const JobApplied = () => {
   const { user } = useAuth();
   // console.log(user?.email);
   // console.log("applied job is", appliedData);
+
+
+
+  const componentPDF =  useRef();
+  const ganeratePDF=useReactToPrint(
+    {
+      content: ()=>componentPDF.current,
+      documentTitle: 'applied job data',
+      onAfterPrint: ()=>toast.success('data saved in pdf')
+    }
+  );
 
   useEffect(() => {
     axios(
@@ -50,6 +63,12 @@ const JobApplied = () => {
               <option value="Hybrid">Hybrid</option>
             </select>
           </div>
+
+
+          <div>
+            <button className="bg-gray-100 px-3 py-2 " onClick={ganeratePDF}>Download Pdf</button>
+          </div>
+             <div ref={componentPDF} style={{width: '100%'}}>
           <table className="table">
             {/* head */}
             <thead>
@@ -87,6 +106,8 @@ const JobApplied = () => {
               ))}
             </tbody>
           </table>
+          </div>
+ 
         </div>
       </div>
     </>
