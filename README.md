@@ -17,4 +17,4 @@
   
   
 
-## My Seleceted category name: 1.assignment_category_0003
+## My Seleceted category name: assignment_category_0003
