@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import {motion} from 'framer-motion'
+import {fadeIn} from '../../../src/variants'
 
  
 
@@ -11,7 +13,7 @@ const Card = ({dataCardJob}) => {
     
     return (
         <div>
-            <div className="max-w-2xl px-8 py-4     dark:bg-green-500 light:bg-white rounded-lg border ">
+            <div className="max-w-2xl px-8 py-4    shadow-lg rounded-lg border ">
     <div className="flex items-center justify-between">
 
  

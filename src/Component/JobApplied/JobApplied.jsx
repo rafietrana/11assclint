@@ -3,6 +3,7 @@ import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
 import useAuth from "../../Hook/useAuth/useAuth";
 
+
 const JobApplied = () => {
   const [appliedData, setAppliedData] = useState([]);
   const [filterValue, setFilterValue] = useState("");
@@ -13,7 +14,7 @@ const JobApplied = () => {
 
   useEffect(() => {
     axios(
-      `https://my-assignment-11-server-bice.vercel.app/gets?email=${user?.email}&filter=${filterValue}`
+      `https://my-assignment-11-server-bice.vercel.app/gets?email=${user?.email}&filter=${filterValue}`, {withCredentials: true}
     ).then((res) => {
       // console.log("applied data is", res.data);
       setAppliedData(res.data);
