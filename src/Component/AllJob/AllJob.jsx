@@ -9,7 +9,7 @@ const AllJob = () => {
 
   const [searchText, setSearchText] = useState("");
 
-  console.log(" table data  is ", tableData);
+  // console.log(" table data  is ", tableData);
 
   useEffect(() => {
     fetch(`http://localhost:5000/getTableCard?search=${searchText}`)
@@ -19,9 +19,7 @@ const AllJob = () => {
       });
   }, [searchText]);
 
-
   // tanstack query start
-
 
   // const {  data, refetch } = useQuery({
   //   queryKey: ['reposData'],
@@ -32,22 +30,19 @@ const AllJob = () => {
   //   })
   // })
 
-
   // tanstack query end
 
   const handleSearchBtn = (e) => {
-
     e.preventDefault();
-    console.log("alhamdulillah your button is now working mashallh");
+    // console.log("alhamdulillah your button is now working mashallh");
 
     const text = e.target.search.value;
- 
+
     setSearchText(text);
     refetch();
-   
   };
 
-  console.log("search text is", searchText);
+  // console.log("search text is", searchText);
 
   return (
     <>
@@ -88,12 +83,11 @@ const AllJob = () => {
                   <td>{dataTable?.applicationDeadline}</td>
                   <td>{` $ ${dataTable?.minPrice} -- $ ${dataTable?.maxPrice}`}</td>
                   <td>
-                  <Link to={`/job/${dataTable?._id}`}>
-                  <button className="px-3 py-2 bg-gray-100 rounded-lg">
-                      View Details
-                    </button>
-                  </Link>
-
+                    <Link to={`/job/${dataTable?._id}`}>
+                      <button className="px-3 py-2 bg-gray-100 rounded-lg">
+                        View Details
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

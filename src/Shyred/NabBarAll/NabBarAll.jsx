@@ -7,7 +7,7 @@ import useAuth from "../../Hook/useAuth/useAuth";
 
 const NabBarAll = () => {
    const {user, logout} = useAuth();
-console.log('user photo', user?.photoURL);
+// console.log('user photo', user?.photoURL);
 
 const menu =<>
 <li > <NavLink to={'/'} className={({ isActive }) =>
@@ -35,7 +35,7 @@ const menu =<>
 
 
 const handleLogutBtn =() =>{
-    console.log('alhamdulillah your logut button is now working');
+    // console.log('alhamdulillah your logut button is now working');
     logout();
 
 }

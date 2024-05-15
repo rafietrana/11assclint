@@ -6,89 +6,80 @@ import { useLoaderData, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
- 
-
 const Update = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [defultData, setDefultData] = useState({})
-    const {user} = useAuth();
-    console.log('defultdata is', defultData);
+  const [startDate, setStartDate] = useState(new Date());
+  const [defultData, setDefultData] = useState({});
+  const { user } = useAuth();
+  // console.log("defultdata is", defultData);
 
+  const handleUpdateBtn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const bannarImg = form.bannarImg?.value;
+    const jobTitle = form.jobTitle?.value;
+    const userName = form.userName?.value;
+    const userEmail = form.email?.value;
+    const minPrice = form.minPrice?.value;
+    const maxPrice = form.maxPrice?.value;
+    const postDate = form.postDate?.value;
+    const jobCategory = form.jobCategory?.value;
+    const applicantsNumber = parseInt(form.applicantsNumber?.value);
+    const applicationDeadline = startDate?.toLocaleDateString();
+    const jobDescription = form.jobDescription?.value;
 
+    // console.log(typeof applicantsNumber);
 
+    const updateInfo = {
+      bannarImg,
+      jobTitle,
+      userName,
+      userEmail,
+      minPrice,
+      maxPrice,
+      postDate,
+      jobCategory,
+      applicantsNumber,
+      applicationDeadline,
+      jobDescription,
+    };
 
-    const  handleUpdateBtn = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const bannarImg = form.bannarImg?.value;
-        const jobTitle = form.jobTitle?.value;
-        const userName = form.userName?.value;
-        const userEmail = form.email?.value;
-        const minPrice = form.minPrice?.value;
-        const maxPrice = form.maxPrice?.value;
-        const postDate = form.postDate?.value;
-        const jobCategory = form.jobCategory?.value;
-        const applicantsNumber = parseInt(form.applicantsNumber?.value);
-        const applicationDeadline = startDate?.toLocaleDateString();
-        const jobDescription = form.jobDescription?.value;
-    
-    
-    
-        console.log(typeof applicantsNumber);
-    
-        const   updateInfo = {
-          bannarImg,
-          jobTitle,
-          userName,
-          userEmail,
-          minPrice,
-          maxPrice,
-          postDate,
-          jobCategory,
-          applicantsNumber,
-          applicationDeadline,
-          jobDescription,
-        };
-    
-        console.log('updateInfo', updateInfo);
-        
+    // console.log("updateInfo", updateInfo);
 
-        axios.put(`http://localhost:5000/updatedata/${defultData?._id}`, updateInfo)
-        .then(res =>{
-            console.log(res.data);
+    axios
+      .put(
+        `http://localhost:5000/updatedata/${defultData?._id}`,
+        updateInfo
+      )
+      .then((res) => {
+        // console.log(res.data);
 
+        if (res.data.modifiedCount > 0) {
+          toast.success("sucessfully updated your data");
+        }
+      });
+  };
 
-            if(res.data.modifiedCount > 0){
-                toast.success('sucessfully updated your data')
-            }
-        })
- 
-      };
+  //   const handleDeleteBtn = (id) =>{
+  //     axios.delete(`http://localhost:5000/deletedata/${id}`)
+  //     .then(res =>{
+  //         console.log(res.data);
+  //     })
+  //   }
 
-
-
-    //   const handleDeleteBtn = (id) =>{
-    //     axios.delete(`http://localhost:5000/deletedata/${id}`)
-    //     .then(res =>{
-    //         console.log(res.data);
-    //     })
-    //   }
-
-    const params = useParams()
-            useEffect(()=>{
-                axios(`http://localhost:5000/getjob/${params.id}`)
-                .then(res =>{
-                             setDefultData(res?.data)
-                })
-            },[])
-    return (
-        <>
-       <NabBarAll></NabBarAll>
-        <div className="w-10/12 mx-auto my-16">
+  const params = useParams();
+  useEffect(() => {
+    axios(
+      `http://localhost:5000/getjob/${params.id}`
+    ).then((res) => {
+      setDefultData(res?.data);
+    });
+  }, []);
+  return (
+    <>
+      <NabBarAll></NabBarAll>
+      <div className="w-10/12 mx-auto my-16">
         <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
- 
-
-          <form  onSubmit={handleUpdateBtn}>
+          <form onSubmit={handleUpdateBtn}>
             <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               <div>
                 <label
@@ -199,7 +190,7 @@ const Update = () => {
                   Posting Date
                 </label>
                 <input
-                disabled
+                  disabled
                   required
                   id="userEmail"
                   type="date"
@@ -238,11 +229,10 @@ const Update = () => {
                   className="w-full border px-3 py-2 outline-none"
                   required
                 >
- 
-                  <option      value="On_Site">On Site </option>
+                  <option value="On_Site">On Site </option>
                   <option value="Remote">Remote</option>
                   <option value="Part_Time">Part Time</option>
-                  <option  value="Hybrid">Hybrid</option>
+                  <option value="Hybrid">Hybrid</option>
                 </select>
               </div>
               <div>
@@ -262,7 +252,7 @@ const Update = () => {
               <label htmlFor="jobDescription"> Job Description</label>
               <br />
               <textarea
-              defaultValue={defultData?.jobDescription}
+                defaultValue={defultData?.jobDescription}
                 className="border col-span-2 w-full outline-none mt-5 p-6"
                 name="jobDescription"
                 id="jobDescription"
@@ -271,14 +261,14 @@ const Update = () => {
 
             <div className="flex justify-end mt-6">
               <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                 Update Job
+                Update Job
               </button>
             </div>
           </form>
-        </section> 
-        </div>
-        </>
-    );
+        </section>
+      </div>
+    </>
+  );
 };
 
 export default Update;

@@ -12,7 +12,7 @@ import Navbar from "../Shyred/Navbar";
 
 const Home = () => {
     const {user} = useAuth();
-    console.log('users value frome  auth and context', user);
+    // console.log('users value frome  auth and context', user);
  
     return (
         <div>

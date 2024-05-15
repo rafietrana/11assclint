@@ -6,8 +6,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddJob = () => {
-  const [ dedlineDate,  setDedlineDate] = useState(new Date());
-  const [  postingDate,   setPostingDate] = useState(new Date());
+  const [dedlineDate, setDedlineDate] = useState(new Date());
+  const [postingDate, setPostingDate] = useState(new Date());
+ 
 
   const { user } = useAuth();
 
@@ -20,15 +21,13 @@ const AddJob = () => {
     const userEmail = form.email?.value;
     const minPrice = form.minPrice?.value;
     const maxPrice = form.maxPrice?.value;
-    const postDate = form.postDate?.value;
+    const postDate = postingDate.toLocaleDateString();
     const jobCategory = form.jobCategory?.value;
     const applicantsNumber = parseInt(form.applicantsNumber?.value);
-    const applicationDeadline = startDate?.toLocaleDateString();
+    const applicationDeadline = dedlineDate?.toLocaleDateString();
     const jobDescription = form.jobDescription?.value;
 
-
-
-    console.log(typeof applicantsNumber);
+    // console.log(typeof applicantsNumber);
 
     const jobInfo = {
       bannarImg,
@@ -44,10 +43,10 @@ const AddJob = () => {
       jobDescription,
     };
 
-    console.log(jobInfo);
+    // console.log(jobInfo);
 
     axios.post("http://localhost:5000/jobpost", jobInfo).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data?.insertedId) {
         toast.success("sucessfully Job Added");
       }
@@ -186,7 +185,7 @@ const AddJob = () => {
                 <br />
                 <ReactDatePicker
                   className="py-3 px-3 border "
-                  selected={ dedlineDate}
+                  selected={dedlineDate}
                   onChange={(date) => setDedlineDate(date)}
                 />
               </div>

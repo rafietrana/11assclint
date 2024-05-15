@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
  
 
 const Card = ({dataCardJob}) => {
-    console.log('from card', dataCardJob);
+    // console.log('from card', dataCardJob);
 
 
 
@@ -11,14 +11,14 @@ const Card = ({dataCardJob}) => {
     
     return (
         <div>
-            <div className="max-w-2xl px-8 py-4 bg-white rounded-lg border dark:bg-gray-800">
+            <div className="max-w-2xl px-8 py-4     dark:bg-green-500 light:bg-white rounded-lg border ">
     <div className="flex items-center justify-between">
 
  
     </div>
 
     <div className="mt-2 min-h-11">
-        <a href="#" className="text-md font-medium text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabindex="0" role="link">{dataCardJob?.jobTitle}</a><br />
+        <a href="#" className="text-md font-medium  dark:text-white hover:text-gray-600 hover:underline" tabindex="0" role="link">{dataCardJob?.jobTitle}</a><br />
 
  
     </div>
@@ -32,7 +32,7 @@ const Card = ({dataCardJob}) => {
     <div className="flex items-center justify-between mt-4">
   <div>
     <Link to={`/job/${dataCardJob?._id}`}>
-    <button   className="font-medium px-3 py-2 rounded-lg bg-gray-100">View Details</button>
+    <button   className="font-medium px-3 py-2 rounded-lg ">View Details</button>
     </Link>
 
 
@@ -41,7 +41,7 @@ const Card = ({dataCardJob}) => {
         <div className="flex items-center">
               <img src="" alt="" />
 
-            <a className="font-normal text-gray-700 cursor-pointer dark:text-gray-200" tabindex="0" role="link"><span className="font-medium"> Author : </span>{dataCardJob?.userName}</a>
+            <a className="font-normal  cursor-pointer " tabindex="0" role="link"><span className="font-medium"> Author : </span>{dataCardJob?.userName}</a>
         </div>
     </div>
 </div>

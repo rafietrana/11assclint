@@ -5,7 +5,7 @@ import { BiSolidRightArrow } from "react-icons/bi";
 
 const Footer = () => {
     return (
-        <div className="bg-gray-100 mt-11">
+        <div className=" mt-11">
     <footer className="footer p-10 w-9/12 mx-auto   text-base-content">
   <aside>
         <div className='w-44'>

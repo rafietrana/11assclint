@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
  
 
 const BlogsCard = ({dataBlogs}) => {
-    console.log('blogsCard ', dataBlogs?.bannerImage);
+    // console.log('blogsCard ', dataBlogs?.bannerImage);
     return (
         <Link to={`/blogdetails/${dataBlogs?._id}`}>
         <div>
