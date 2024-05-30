@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Card from "./Card";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const JobsByCategory = () => {
   //  const [JobCardData, setJobCardData] = useState([]);
@@ -48,6 +49,11 @@ const JobsByCategory = () => {
           The job market is constantly evolving, with new opportunities emerging
           regularly.{" "}
         </p>
+        <Link to={"/wishlist"}>
+          <button className="bg-gray-100 px-3 py-2  uppercase font-semibold">
+            View WishList
+          </button>
+        </Link>
       </div>
       <Tabs>
         <TabList>

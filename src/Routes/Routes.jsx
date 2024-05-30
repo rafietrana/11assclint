@@ -13,6 +13,7 @@ import MyJob from "../Component/MyJob/MyJob";
 import Update from "../Component/Update/Update";
 import JobApplied from "../Component/JobApplied/JobApplied";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
+import WishList from "../Pages/WishList";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         element: <AllJob></AllJob>,
       },
       {
+        path: "/wishlist",
+        element: <WishList></WishList>,
+      },
+      {
         path: "/job/:id",
         element: (
           <PrivetRoute>
@@ -83,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/jobapplied",
-        element: <PrivetRoute><JobApplied></JobApplied></PrivetRoute>
+        element: (
+          <PrivetRoute>
+            <JobApplied></JobApplied>
+          </PrivetRoute>
+        ),
       },
     ],
   },

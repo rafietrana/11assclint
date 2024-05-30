@@ -5,7 +5,8 @@ import Find from "../Component/JobsByCategory/Find";
 import JobsByCategory from "../Component/JobsByCategory/JobsByCategory";
 import Sliders from "../Component/sliders";
 import useAuth from "../Hook/useAuth/useAuth";
-import Navbar from "../Shyred/Navbar";
+import NabBarAll from './../Shyred/NabBarAll/NabBarAll';
+ 
  
 
  
@@ -16,7 +17,7 @@ const Home = () => {
  
     return (
         <div>
-            <Navbar></Navbar>
+               <NabBarAll></NabBarAll>
             <Sliders></Sliders>
             <JobsByCategory></JobsByCategory>
             <Find></Find>

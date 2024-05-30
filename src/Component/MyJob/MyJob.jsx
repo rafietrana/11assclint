@@ -27,7 +27,9 @@ const MyJob = () => {
       axios
         .get(
           `https://my-assignment-11-server-bice.vercel.app/getmyjob/${user?.email}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => res.data),
   });

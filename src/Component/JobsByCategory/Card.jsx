@@ -1,9 +1,25 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../src/variants";
+import { TbJewishStar } from "react-icons/tb";
+import axios from "axios";
 
 const Card = ({ dataCardJob }) => {
   // console.log('from card', dataCardJob);
+  const handleWishlist = (cardData) => {
+    console.log("alhamdulillah dataCard job is", cardData);
+    axios
+      .post(
+        "https://my-assignment-11-server-bice.vercel.app/postwish",
+        cardData
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div>
@@ -17,14 +33,24 @@ const Card = ({ dataCardJob }) => {
         <div className="flex items-center justify-between"></div>
 
         <div className="mt-2 min-h-11">
-          <a
-            href="#"
-            className="text-md font-medium  dark:text-white hover:text-gray-600 hover:underline"
-            tabindex="0"
-            role="link"
-          >
-            {dataCardJob?.jobTitle}
-          </a>
+          <div className="flex justify-between">
+            <div>
+              <a
+                href="#"
+                className="text-md font-medium  dark:text-white hover:text-gray-600 hover:underline"
+                tabindex="0"
+                role="link"
+              >
+                {dataCardJob?.jobTitle}
+              </a>
+            </div>
+            <div>
+              <button onClick={() => handleWishlist(dataCardJob)}>
+                <TbJewishStar />
+              </button>
+            </div>
+          </div>
+
           <br />
         </div>
         <span className="text-sm font-lig  ">
