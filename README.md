@@ -21,4 +21,17 @@ A job-seeking website is a comprehensive platform designed to connect job seeker
   
   
 
-## My Seleceted category name: assignment_category_0003
+## Installation Steps
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/Zioun/Ranga.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd folder-name
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
