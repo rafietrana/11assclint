@@ -1,188 +1,138 @@
 import { Link } from "react-router-dom";
+
+import { toast } from "react-toastify";
+import axios from "axios";
+ 
 import NabBarAll from "../Shyred/NabBarAll/NabBarAll";
 import useAuth from "../Hook/useAuth/useAuth";
-import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { createUser, updateUserInfo, user } = useAuth();
 
-  const handleSingUpBtn = (e) => {
+  
+
+ 
+
+  const handleSignUpBtn = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name?.value;
-    const email = form.email?.value;
-    const password = form.password?.value;
-    const photo = form.photo?.value;
-    console.log(name, email, password, photo);
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo = form.photo.value;
 
     createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-        toast.success(" sucesfully created users✔😊👌");
-        // update user
+      .then(() => {
+        toast.success("Successfully created user ✔😊");
         updateUserInfo(name, photo);
 
         const loggedUser = { email: user?.email };
-        axios
-          .post(
-            "https://my-assignment-11-server-bice.vercel.app/jwt",
-            loggedUser,
-            {
-              withCredentials: true,
-            }
-          )
-          .then((res) => {
-            // console.log("token is ", res.data);
-          });
+        axios.post(
+          "https://my-assignment-11-server-bice.vercel.app/jwt",
+          loggedUser,
+          { withCredentials: true },
+        );
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Not Created SucessFully😢😭");
+        toast.error("Sign up failed 😢");
       });
   };
 
   return (
-    <div>
-      <NabBarAll></NabBarAll>
+    <>
+      <NabBarAll />
 
-      <section className="bg-white dark:bg-gray-900">
-        <div className="container flex flex-col items-center justify-center min-h-screen px-6 mx-auto">
-          <form onSubmit={handleSingUpBtn} className="w-full max-w-md">
-            <div className="flex items-center justify-center mt-6">
-              <p
-                href="#"
-                className="w-1/3 pb-4 font-medium text-center text-gray-800  border-b-2 border-blue-500 dark:border-blue-400 dark:text-white text-xl  uppercase"
+      <div
+        className={`min-h-screen flex items-center justify-center px-4  transition-colors duration-500`}
+      >
+        <div className="w-full max-w-md lg:max-w-lg  rounded-xl border overflow-hidden transition-colors duration-300">
+          {/* Header */}
+          <div className="py-6 px-8 border-b   text-center">
+            <h2 className="text-2xl font-bold   uppercase drop-shadow-sm">
+              Sign Up Now
+            </h2>
+          </div>
+
+          <div className="px-8 py-6 space-y-6">
+            <form onSubmit={handleSignUpBtn} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium  ">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  className="mt-1 block w-full px-4 py-2 rounded-lg  border focus:ring-2   focus:ring-green-400 focus:outline-none"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium  ">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  className="mt-1 block w-full px-4 py-2 rounded-lg   focus:ring-2 focus:ring-green-400 focus:outline-none transition-colors duration-300"
+                  placeholder="you@example.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium  "
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  required
+                  className="mt-1 block w-full px-4 py-2 rounded-lg   focus:ring-2 focus:ring-green-400 focus:outline-none transition-colors duration-300"
+                  placeholder="********"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="photo" className="block text-sm font-medium  ">
+                  Photo URL
+                </label>
+                <input
+                  type="text"
+                  name="photo"
+                  id="photo"
+                  required
+                  className="mt-1 block w-full px-4 py-2 rounded-lg   focus:ring-2 focus:ring-green-400 focus:outline-none transition-colors duration-300"
+                  placeholder="https://example.com/photo.jpg"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md transition duration-300"
               >
-                sign up Now
-              </p>
-            </div>
-
-            <div className="relative flex items-center mt-8">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="text"
-                name="name"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Name"
-                required
-              />
-            </div>
-            <div className="relative flex items-center mt-8">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="email"
-                name="email"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Email"
-                required
-              />
-            </div>
-            <div className="relative flex items-center mt-8">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="password"
-                name="password"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Password"
-                required
-              />
-            </div>
-            <div className="relative flex items-center mt-8">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="text"
-                name="photo"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Phot Url"
-                required
-              />
-            </div>
-
-            {/* Other input fields */}
-
-            <div className="mt-6">
-              <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                 Sign Up
               </button>
-            </div>
-          </form>
-          <div>
-            <div className="mt-6 text-center ">
-              <p>
-                Already Have an Account?{" "}
-                <Link to={"/login"} className="text-red-500">
-                  Login Now
-                </Link>
-              </p>
+            </form>
+
+            <div className="flex items-center justify-center mt-4 text-sm  ">
+              Already have an account?{" "}
+              <Link to="/login" className="ml-1   hover:underline">
+                Login Now
+              </Link>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 
