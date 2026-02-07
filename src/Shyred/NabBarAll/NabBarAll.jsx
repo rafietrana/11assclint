@@ -1,116 +1,151 @@
 import { FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../assets/mainimage.svg'
+import logo from "../../assets/mainimage.svg";
 import useAuth from "../../Hook/useAuth/useAuth";
 import { useEffect, useState } from "react";
 
- 
-
 const NabBarAll = () => {
-   const {user, logout} = useAuth();
-// console.log('user photo', user?.photoURL);
+  const { user, logout } = useAuth();
 
-const menu =<>
-<li > <NavLink to={'/'} className={({ isActive }) =>
-              isActive ? " text-green-500  border-b-2 border-red-500" : ""
-            }>Home</NavLink> </li>
-        <li> <NavLink to={'/alljob'}   className={({ isActive }) =>
-                      isActive ? " text-green-500  border-b-2 border-red-700" : ""
-                    } >All Jobs</NavLink> </li>
-<li> <NavLink to={'/jobapplied'}   className={({ isActive }) =>
-              isActive ? " text-green-500  border-b-2 border-red-700" : ""
-            }>Applied Jobs</NavLink> </li>
-<li> <NavLink to={'/addjob'} className={({ isActive }) =>
-              isActive ? " text-green-500  border-b-2 border-red-700" : ""
-            }>Add A Jobs</NavLink> </li>
-<li> <NavLink to={'/myjob'}  className={({ isActive }) =>
-              isActive ? " text-green-500  border-b-2 border-red-700" : ""
-            }>My Jobs</NavLink> </li>
-<li> <NavLink to={'/blog'} className={({ isActive }) =>
-                      isActive ? " text-green-500  border-b-2 border-red-700" : ""
-                    }>Blogs </NavLink> </li>
- 
-</>
+  const menuItems = [
+    { path: "/", label: "Home" },
+    { path: "/alljob", label: "All Jobs" },
+    { path: "/jobapplied", label: "Applied Jobs" },
+    { path: "/addjob", label: "Add Job" },
+    { path: "/myjob", label: "My Jobs" },
+    { path: "/blog", label: "Blogs" },
+  ];
 
+  const menu = (
+    <>
+      {menuItems.map(({ path, label }) => (
+        <li key={path}>
+          <NavLink
+            to={path}
+            className={({ isActive }) =>
+              `transition duration-300 hover:text-green-500 ${
+                isActive ? "text-green-500 border-b-2 border-green-500" : ""
+              }`
+            }
+          >
+            {label}
+          </NavLink>
+        </li>
+      ))}
+    </>
+  );
 
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
 
-const[theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
+  const handleToggle = (e) => {
+    setTheme(e.target.checked ? "dark" : "light");
+  };
 
-useEffect(()=>{
-  localStorage.setItem("theme", theme);
-  const localTheme = localStorage.getItem("theme");
-  document.querySelector("html").setAttribute("data-theme", localTheme)
-}, [theme]);
+  return (
+    <div className="sticky top-0 z-50 bg-base-100 shadow-md">
+      <div className="navbar w-11/12 mx-auto py-3">
+        {/* Navbar Left */}
+        <div className="navbar-start flex items-center gap-3">
+          {/* Mobile menu */}
+          <div className="dropdown lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {menu}
+            </ul>
+          </div>
 
+          {/* Logo */}
+          <Link to="/" className="ml-2">
+            <img src={logo} alt="logo" className="w-[110px]" />
+          </Link>
+        </div>
 
+        {/* Navbar Center */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal gap-6 text-lg font-medium">
+            {menu}
+          </ul>
+        </div>
 
-const handleToggle =(e)=>{
-  if(e.target.checked){
-    setTheme("dark");
-  }else{
-    setTheme("light");
-  }
- }
+        {/* Navbar End */}
+        <div className="navbar-end">
+          <div className="flex items-center gap-3 min-w-[260px] justify-end">
+            {/* Theme Toggle */}
+            <input
+              type="checkbox"
+              className="toggle toggle-success toggle-sm"
+              onChange={handleToggle}
+              checked={theme === "dark"}
+            />
 
-const handleLogutBtn =() =>{
-    // console.log('alhamdulillah your logut button is now working');
-    logout();
+            {/* User section */}
+            {user ? (
+              <>
+                {/* Avatar */}
+                <div
+                  className="avatar tooltip tooltip-bottom"
+                  data-tip={user?.displayName || "User"}
+                >
+                  <div className="w-9 rounded-full ring ring-success ring-offset-2">
+                    <img src={user?.photoURL} alt="user" />
+                  </div>
+                </div>
 
-}
+                {/* Logout */}
+                <button
+                  onClick={logout}
+                  className="btn btn-sm btn-outline btn-error h-9 flex items-center gap-1"
+                >
+                  <FaUser /> Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="btn btn-sm btn-outline h-9 flex items-center gap-1"
+                >
+                  <FaUser /> Login
+                </Link>
 
-    return (
-        <div  className="`bg-white shadow-md  {}" >
-        <div className=' flex py-4  '>
- <div className="navbar  w-10/12 mx-auto">
-<div className="navbar-start">
-<div className="dropdown">
-<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-</div>
-<ul tabIndex={0} className="menu  flex font-poppin gap-3 menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-
-{menu}
-</ul>
-</div>
-
-<div className="w-[100px]">
-<img  className="" src={logo} alt="" />
-</div>
- 
-</div>
-
-<div className="navbar-center hidden lg:flex">
-<ul className={`menu-horizontal flex gap-7  text-xl  font-poppin font-medium    px-1 ` }>
-{menu}
-</ul>
-</div>
-<div className="navbar-end flex gap-4 ">
-{
-      user ? ( <>
-<div className="avatar" title={user?.displayName ? user?.displayName : <p> Not Found Name</p>}>
-  <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-    <img src={user?.photoURL} />
-  </div>
-</div>
- 
-    <Link  onClick={handleLogutBtn}>
-  <a className="btn btn-sm"><span><FaUser /></span>Logout</a></Link>
-
-  </>) : (    <Link  to={'/login'}>
-    <a  className="btn btn-sm"><span><FaUser /></span>Login</a></Link>)
-    }
-
-
-
-<Link to={'/singup'}>
-<a  className="btn btn-sm"><span><FaUser /></span>SingUp </a></Link>
-
-</div>
-</div>
-</div>
-</div>
-    );
+                <Link
+                  to="/singup"
+                  className="btn btn-sm btn-success text-white h-9 flex items-center gap-1"
+                >
+                  <FaUser /> Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default NabBarAll;
