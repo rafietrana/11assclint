@@ -1,114 +1,78 @@
-import "swiper/css";
-import { Navigation } from "swiper/modules";
-import { SwiperSlide, Swiper } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css/navigation";
-import "swiper/css/navigation";
+import { FaSearch } from "react-icons/fa";
+import CountUp from "react-countup";
 
-import one from "../assets/one.jpg";
-// import two from "../assets/two.jpg";
-// import tree from "../assets/tree.jpg";
-import { GrSearch } from "react-icons/gr";
-import { useTypewriter } from "react-simple-typewriter";
+
 
 const Sliders = () => {
-  const [text] = useTypewriter({
-    words: ["OnSite", "Remote", "Hybrid"],
-    loop: 0,
-  });
-
   return (
-    <div className="">
-      <Swiper
-        pagination={{
-          clickable: true,
-        }}
-        loop={true}
-        autoplay={{
-          delay: 4500,
-          disableOnInteraction: false,
-        }}
-        navigation={true}
-        modules={[Navigation, Autoplay, Pagination]}
-        className="mySwiper w-full  h-[400px]  mx-auto -z-20 bg-gray-100  "
-      >
-        <SwiperSlide
-          className="relative  bg-cover bg-center  "
-          // style={{ backgroundImage: `url(${one})` }}
-        >
-          <div>
-            <div className=" absolute  top-[20%] left-[10%]  ">
-              <div className="space-y-7 ">
-                <h1 className="lg:text-6xl font-bold text-white lg:w-5/12 w-11/12 text-xl ">
- 
-                  <span className="text-[#22BE0D]">{text}</span><span className="text-black"> Quick and
-                  Easy</span>
-                </h1>
-                <p className="md:w-5/12 w-11/12 text-black  ">
-                  Discover your next career move with our cutting-edge job
-                  seeking plathtmlForm! Unlock endless opportunities, tailored
-                  just htmlFor you. Connect with top employers, browse curated
-                  listings, and land your dream job faster than ever behtmlFore.
-                  Join the revolution in job hunting today
-                </p>
+    <div
+      className="min-h-[500px] bg-cover bg-center relative"
+      style={{
+        backgroundImage:
+          "url('https://i.ibb.co.com/zTMY3sLC/Work-Jone-website-slider-background-image.png')",
+      }}
+    >
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-[#0529]/95"></div>
+
+      {/* CONTENT */}
+      <div className="relative flex flex-col justify-center items-center gap-6 min-h-[500px] text-white">
+        <h1 className="font-bold text-3xl md:text-4xl text-center">
+          The #1 <span className="text-green-500">Job Board for</span> <br />
+          Hiring or Find your next job
+        </h1>
+
+        <p className="w-10/12 md:w-8/12 text-center text-gray-200">
+          Each month, more than 3 million job seekers turn to website in their
+          search for work, making over 140,000 applications every single day
+        </p>
+
+        {/* SEARCH BAR */}
+        <div className="flex items-center bg-white rounded-md overflow-hidden w-10/12 md:w-6/12">
+          <input
+            type="text"
+            placeholder="Search jobs, keywords..."
+            className="flex-1 px-4 py-3 text-black outline-none"
+          />
+          <button className="bg-green-500 px-5 py-3 mr-2 text-white hover:bg-green-600">
+            <FaSearch />
+          </button>
+        </div>
+        {/* COUNTER SECTION */}
+        {/* COUNTER SECTION */}
+<div className=" grid-cols-2 hidden md:grid md:grid-cols-4 gap-6 mt-10 w-11/12 md:w-9/12 text-center">
+  <div className="   rounded-lg  ">
+     <h2 className="text-3xl font-bold ">
+      <CountUp start={0} end={30} duration={2.5} separator="," />+
+    </h2>
+    <p className="text-gray-200 mt-1 opacity-50">Job Seekers</p>
+  </div>
+
+  <div className="    rounded-lg  ">
+     <h2 className="text-3xl font-bold ">
+      <CountUp start={0} end={120} duration={2.5} separator="," />k+
+    </h2>
+    <p className="text-gray-200 mt-1 opacity-50">Daily Applications</p>
+  </div>
+
+  <div className="    rounded-lg  ">
+     <h2 className="text-3xl font-bold ">
+      <CountUp start={0} end={25} duration={2.5} separator="," />+
+    </h2>
+    <p className="text-gray-200 mt-1 opacity-50">Companies</p>
+  </div>
+
+  <div className="  rounded-lg  ">
+       <h2 className="text-3xl font-bold ">
+      <CountUp start={0} end={98} duration={2.5} separator="," />%
+    </h2>
+    <p className="text-gray-200 opacity-50 mt-1">Success Rate</p>
+  </div>
+</div>
+
+
   
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide
-          className="relative  bg-cover bg-center "
-          // style={{ backgroundImage: `url(${two})` }}
-        >
-          <div>
-            <div className=" absolute  top-[20%] left-[10%] ">
-              <div className="space-y-7">
-                <h1 className="lg:text-6xl font-bold text-white lg:w-5/12 w-11/12 text-xl ">
- 
-                  <span className="text-[#22BE0D]">{text}</span><span className="text-black">
-                  Quick and
-                  Easy
-                    </span> 
-                </h1>
-                <p className="md:w-5/12 w-11/12 text-black ">
-                  Discover your next career move with our cutting-edge job
-                  seeking plathtmlForm! Unlock endless opportunities, tailored
-                  just htmlFor you. Connect with top employers, browse curated
-                  listings, and land your dream job faster than ever behtmlFore.
-                  Join the revolution in job hunting today
-                </p>
- 
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide
-          className="relative  bg-cover bg-center "
-          // style={{ backgroundImage: `url(${tree})` }}
-        >
-          <div>
-            <div className=" absolute   top-[20%] left-[10%]">
-              <div className="space-y-7">
-                <h1 className="lg:text-6xl font-bold text-white lg:w-5/12 w-11/12 text-xl ">
- 
-                  <span className="text-[#22BE0D]">{text}</span> <span className="text-black"> Quick and
-                  Easy</span>
-                </h1>
-                <p className="md:w-5/12 w-11/12 text-black ">
-                  Discover your next career move with our cutting-edge job
-                  seeking plathtmlForm! Unlock endless opportunities, tailored
-                  just htmlFor you. Connect with top employers, browse curated
-                  listings, and land your dream job faster than ever behtmlFore.
-                  Join the revolution in job hunting today
-                </p>
- 
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      </div>
     </div>
   );
 };

@@ -43,7 +43,7 @@ const NabBarAll = () => {
  
 
   return (
-    <div className="sticky top-0 z-50 bg-base-100 shadow-md">
+    <div className="sticky top-0 z-50 bg-base-100 ">
       <div className="navbar w-11/12 mx-auto py-3">
         {/* Navbar Left */}
         <div className="navbar-start flex items-center gap-3">
@@ -67,7 +67,7 @@ const NabBarAll = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2   bg-base-100 rounded-box w-52"
             >
               {menu}
             </ul>
@@ -75,7 +75,7 @@ const NabBarAll = () => {
 
           {/* Logo */}
           <Link to="/" className="ml-2">
-            <img src={logo} alt="logo" className="w-[110px]" />
+            <img  src={logo} alt="logo" className="w-[110px] hidden md:block"  />
           </Link>
         </div>
 
