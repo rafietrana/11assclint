@@ -2,9 +2,23 @@ import { Link } from "react-router-dom";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import useAuth from "../../Hook/useAuth/useAuth";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Login = () => {
-  const { loginUser,  googleLogin } = useAuth();
+  const { loginUser,  googleLogin, theme } = useAuth();
+  const isLight = theme == 'light'
+  
+ 
+  const [currentTheme, setCurrentTheme] = useState(false);
+
+ useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    setCurrentTheme(  theme == 'light' ? true : false)
+    
+  }, []);
+
+ 
+  
 
   const handleGoogleLogin = () => {
     googleLogin()
@@ -43,7 +57,7 @@ const Login = () => {
       <div className="min-h-screen flex items-center justify-center   px-4">
         <div className="w-full max-w-md lg:max-w-lg     rounded-xl  border overflow-hidden">
           {/* Header */}
-          <div className="py-6 px-8 border-b    text-center">
+          <div className={`py-6 px-8 border-b ${isLight ? "text-red-500" : "text-white"}    text-center`}>
             <h2 className="text-2xl font-bold    uppercase">
               Login Now
             </h2>

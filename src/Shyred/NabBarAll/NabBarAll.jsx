@@ -2,10 +2,10 @@ import { FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/mainimage.svg";
 import useAuth from "../../Hook/useAuth/useAuth";
-import { useEffect, useState } from "react";
+ 
 
 const NabBarAll = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, theme, setTheme } = useAuth();
 
   const menuItems = [
     { path: "/", label: "Home" },
@@ -15,6 +15,9 @@ const NabBarAll = () => {
     { path: "/myjob", label: "My Jobs" },
     { path: "/blog", label: "Blogs" },
   ];
+
+
+
 
   const menu = (
     <>
@@ -35,18 +38,9 @@ const NabBarAll = () => {
     </>
   );
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "light"
-  );
+  
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
-
-  const handleToggle = (e) => {
-    setTheme(e.target.checked ? "dark" : "light");
-  };
+ 
 
   return (
     <div className="sticky top-0 z-50 bg-base-100 shadow-md">
@@ -99,8 +93,8 @@ const NabBarAll = () => {
             <input
               type="checkbox"
               className="toggle toggle-success toggle-sm"
-              onChange={handleToggle}
-              checked={theme === "dark"}
+           onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
+  checked={theme === "dark"}
             />
 
             {/* User section */}
