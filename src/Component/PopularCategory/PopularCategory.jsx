@@ -56,7 +56,7 @@ const PopularCategory = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-40 relative">
+    <div className="w-11/12 mx-auto mt-40 mb-10 relative">
       {/* Heading */}
       <div className="mb-10">
         <h1 className="text-2xl md:text-3xl font-bold">Popular Category</h1>
