@@ -32,7 +32,7 @@ const Sliders = () => {
           <input
             type="text"
             placeholder="Search jobs, keywords..."
-            className="flex-1 px-4 py-3 text-black outline-none"
+            className="flex-1 px-4 py-3 text-black bg-white outline-none"
           />
           <button className="bg-green-500 px-5 py-3 mr-2 text-white hover:bg-green-600">
             <FaSearch />
