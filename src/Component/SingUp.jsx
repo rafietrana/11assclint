@@ -2,16 +2,12 @@ import { Link } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import axios from "axios";
- 
+
 import NabBarAll from "../Shyred/NabBarAll/NabBarAll";
 import useAuth from "../Hook/useAuth/useAuth";
 
 const SignUp = () => {
   const { createUser, updateUserInfo, user } = useAuth();
-
-  
-
- 
 
   const handleSignUpBtn = (e) => {
     e.preventDefault();
@@ -27,11 +23,9 @@ const SignUp = () => {
         updateUserInfo(name, photo);
 
         const loggedUser = { email: user?.email };
-        axios.post(
-          "https://my-assignment-11-server-bice.vercel.app/jwt",
-          loggedUser,
-          { withCredentials: true },
-        );
+        axios.post("http://localhost:5000/jwt", loggedUser, {
+          withCredentials: true,
+        });
       })
       .catch((error) => {
         console.error(error);

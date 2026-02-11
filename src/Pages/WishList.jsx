@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import NabBarAll from "../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
- 
+
 import CardWish from "../Component/CardWish";
 
 const WishList = () => {
   const [wishData, setWishData] = useState([]);
 
   useEffect(() => {
-    axios("https://my-assignment-11-server-bice.vercel.app/getwish").then(
-      (res) => {
-        console.log("wish data is", res.data);
-        setWishData(res?.data);
-      }
-    );
+    axios("http://localhost:5000/getwish").then((res) => {
+      console.log("wish data is", res.data);
+      setWishData(res?.data);
+    });
   });
   return (
     <div>

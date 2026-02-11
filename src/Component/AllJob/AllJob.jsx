@@ -10,9 +10,7 @@ const AllJob = () => {
   // console.log(" table data  is ", tableData);
 
   useEffect(() => {
-    fetch(
-      `https://my-assignment-11-server-bice.vercel.app/getTableCard?search=${searchText}`
-    )
+    fetch(`http://localhost:5000/getTableCard?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setTableData(data);

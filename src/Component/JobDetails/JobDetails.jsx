@@ -38,31 +38,24 @@ const JobDetails = () => {
       jobTitles,
     };
 
-    axios
-      .post(
-        "https://my-assignment-11-server-bice.vercel.app/setApplied",
-        appliedInfo
-      )
-      .then((res) => {
-        // console.log("updated data is", res.data);
+    axios.post("http://localhost:5000/setApplied", appliedInfo).then((res) => {
+      // console.log("updated data is", res.data);
 
-        if (res.data.insertedId) {
-          axios
-            .patch(
-              `https://my-assignment-11-server-bice.vercel.app/inccount/${data?._id}`
-            )
-            .then((res) => {
-              // console.log(res.data);
-              // console.log("alhamdulillah sucessfully updated data mashallah");
-              if (res.data.modifiedCount > 0) {
-                toast.success("sucessfully updated data");
-                setTimeout(() => {
-                  window.location.reload();
-                }, 2000);
-              }
-            });
-        }
-      });
+      if (res.data.insertedId) {
+        axios
+          .patch(`http://localhost:5000/inccount/${data?._id}`)
+          .then((res) => {
+            // console.log(res.data);
+            // console.log("alhamdulillah sucessfully updated data mashallah");
+            if (res.data.modifiedCount > 0) {
+              toast.success("sucessfully updated data");
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            }
+          });
+      }
+    });
   };
 
   return (

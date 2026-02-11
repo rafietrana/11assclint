@@ -61,21 +61,13 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail };
 
       if (currentUser) {
-        axios.post(
-          "https://my-assignment-11-server-bice.vercel.app/jwt",
-          loggedUser,
-          {
-            withCredentials: true,
-          },
-        );
+        axios.post("http://localhost:5000/jwt", loggedUser, {
+          withCredentials: true,
+        });
       } else {
-        axios.post(
-          "https://my-assignment-11-server-bice.vercel.app/logout",
-          loggedUser,
-          {
-            withCredentials: true,
-          },
-        );
+        axios.post("http://localhost:5000/logout", loggedUser, {
+          withCredentials: true,
+        });
       }
     });
     return () => unSubcribe();
@@ -89,8 +81,8 @@ const AuthProvider = ({ children }) => {
     logout,
     googleLogin,
     loading,
-    theme, 
-    setTheme
+    theme,
+    setTheme,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

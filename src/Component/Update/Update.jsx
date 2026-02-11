@@ -46,10 +46,7 @@ const Update = () => {
     // console.log("updateInfo", updateInfo);
 
     axios
-      .put(
-        `https://my-assignment-11-server-bice.vercel.app/updatedata/${defultData?._id}`,
-        updateInfo
-      )
+      .put(`http://localhost:5000/updatedata/${defultData?._id}`, updateInfo)
       .then((res) => {
         // console.log(res.data);
 
@@ -60,7 +57,7 @@ const Update = () => {
   };
 
   //   const handleDeleteBtn = (id) =>{
-  //     axios.delete(`https://my-assignment-11-server-bice.vercel.app/deletedata/${id}`)
+  //     axios.delete(`http://localhost:5000/deletedata/${id}`)
   //     .then(res =>{
   //         console.log(res.data);
   //     })
@@ -68,9 +65,7 @@ const Update = () => {
 
   const params = useParams();
   useEffect(() => {
-    axios(
-      `https://my-assignment-11-server-bice.vercel.app/getjob/${params.id}`
-    ).then((res) => {
+    axios(`http://localhost:5000/getjob/${params.id}`).then((res) => {
       setDefultData(res?.data);
     });
   }, []);

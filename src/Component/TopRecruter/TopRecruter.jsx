@@ -108,7 +108,7 @@ const TopRecruter = () => {
              </div>
       </div> 
            <div className="flex p-5 gap-8 items-center bg-[#EFF7FF] rounded-lg">
-        <img className="hidden block" src="https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage2/planning-job.png" alt="" />
+        <img className="hidden md:block" src="https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage2/planning-job.png" alt="" />
              <div>
 
            <p className="text-2xl font-semibold mb-2">Job Tools Services</p>
