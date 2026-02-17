@@ -42,11 +42,15 @@ const JobsShowing = () => {
   }, []);
 
   // Handle category filter
+ 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     if (!categoryName) {
       setFilteredJobs(jobs);
-    } else {
+    } else if (categoryName == "viewall"){
+        setFilteredJobs(jobs)
+    }
+     else {
       setFilteredJobs(
         jobs.filter((job) =>
           job.category?.toLowerCase() === categoryName.toLowerCase()
@@ -67,7 +71,11 @@ const JobsShowing = () => {
 
       {/* Categories */}
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
-    
+        <li     className={`flex items-center gap-3 px-3 py-4 border rounded-lg cursor-pointer hover:border-green-500 hover:shadow transition `}>
+                       
+              < FaDollarSign  className="text-xl md:text-2xl text-green-500" />
+              <span  onClick={()=>handleCategoryClick("viewall")} className="text-sm md:text-base font-medium">View All</span>  
+        </li>
         {jobsCategory.map((category, index) => {
           const Icon = category.icon;
           return (
