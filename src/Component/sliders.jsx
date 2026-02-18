@@ -13,7 +13,7 @@ const Sliders = () => {
       }}
     >
       {/* OVERLAY */}
-      <div className="absolute inset-0 bg-[#0529]/95"></div>
+      <div className="absolute inset-0 bg-blue-950/85"></div>
 
       {/* CONTENT */}
       <div className="relative flex flex-col justify-center items-center gap-6 min-h-[500px] text-white">

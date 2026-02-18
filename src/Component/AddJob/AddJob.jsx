@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -5,19 +6,25 @@ import useAuth from "../../Hook/useAuth/useAuth";
 
 const AddJob = () => {
   const { user } = useAuth();
-  const IMGBB_API_KEY = "YOUR_IMGBB_API_KEY"; // 🔐 Replace with env variable later
+  const [loading, setLoading] = useState(false);
+
+  const IMGBB_API_KEY = "94bd10bad413f751512cfb80beb4cc69";
 
   const handleAddJobBtn = async (e) => {
     e.preventDefault();
     const form = e.target;
-
-    const imageFile = form.image.files[0];
-    if (!imageFile) {
-      return toast.error("Please select an image");
-    }
+    setLoading(true);
 
     try {
-      // 1️⃣ Upload image to imgbb
+      const imageFile = form.image.files[0];
+
+      if (!imageFile) {
+        toast.error("Please select an image");
+        setLoading(false);
+        return;
+      }
+
+      // Upload image to imgbb
       const imageFormData = new FormData();
       imageFormData.append("image", imageFile);
 
@@ -25,23 +32,24 @@ const AddJob = () => {
       const imgRes = await axios.post(imgbbUrl, imageFormData);
       const imageUrl = imgRes.data.data.display_url;
 
-      // 2️⃣ Prepare Job Object (Updated Structure)
+      // Create job object (consistent structure)
       const jobInfo = {
-        type: form.type.value,
-        category: form.category.value,
-        title: form.title.value,
+        type: form.type.value, // Remote, On_Site, Hybrid, Part_Time
+        jobCategory: form.category.value,
+        jobTitle: form.title.value,
         location: form.location.value,
-        createdAt: new Date(),
-        priceFrom: Number(form.priceFrom.value),
-        priceTo: Number(form.priceTo.value),
+        postDate: new Date().toISOString(),
+        applicationDeadline: form.deadline.value,
+        minPrice: Number(form.priceFrom.value),
+        maxPrice: Number(form.priceTo.value),
         rate: form.rate.value,
         tags: form.tags.value.split(",").map(tag => tag.trim()),
-        image: imageUrl,
-        description: form.description.value,
+        bannarImg: imageUrl,
+        jobDescription: form.description.value,
+        applicantsNumber: 0,
         createdBy: user?.email || "anonymous"
       };
 
-      // 3️⃣ Send to Backend
       const res = await axios.post("http://localhost:5000/jobpost", jobInfo);
 
       if (res.data?.insertedId) {
@@ -52,6 +60,8 @@ const AddJob = () => {
       console.error(error);
       toast.error("Something went wrong");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -92,9 +102,9 @@ const AddJob = () => {
             >
               <option value="">Select type</option>
               <option value="Remote">Remote</option>
-              <option value="On Site">On Site</option>
+              <option value="On_Site">On Site</option>
               <option value="Hybrid">Hybrid</option>
-              <option value="Part Time">Part Time</option>
+              <option value="Part_Time">Part Time</option>
             </select>
           </div>
 
@@ -113,7 +123,7 @@ const AddJob = () => {
               <option value="Design">Design</option>
               <option value="Marketing">Marketing</option>
               <option value="Business">Business</option>
-              <option value="Data Science">Data Science</option>
+              <option value="Data_Science">Data Science</option>
             </select>
           </div>
 
@@ -186,6 +196,19 @@ const AddJob = () => {
             </select>
           </div>
 
+          {/* Deadline */}
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">
+              Application Deadline
+            </label>
+            <input
+              required
+              type="date"
+              name="deadline"
+              className="w-full px-4 py-2 border rounded-md"
+            />
+          </div>
+
           {/* Tags */}
           <div className="md:col-span-2">
             <label className="block text-sm text-gray-600 mb-1">
@@ -195,7 +218,7 @@ const AddJob = () => {
               required
               type="text"
               name="tags"
-              placeholder="Node.js, Express, MongoDB"
+              placeholder="React, Node.js, MongoDB"
               className="w-full px-4 py-2 border rounded-md"
             />
           </div>
@@ -216,10 +239,11 @@ const AddJob = () => {
           {/* Submit Button */}
           <div className="md:col-span-2 flex justify-end">
             <button
+              disabled={loading}
               type="submit"
-              className="px-8 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition"
+              className="px-8 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition disabled:opacity-50"
             >
-              Add Job
+              {loading ? "Adding..." : "Add Job"}
             </button>
           </div>
         </form>

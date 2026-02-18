@@ -6,8 +6,7 @@ const AllJob = () => {
   const [tableData, setTableData] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-
-  // console.log(" table data  is ", tableData);
+ 
 
   useEffect(() => {
     fetch(`http://localhost:5000/getTableCard?search=${searchText}`)
@@ -60,7 +59,7 @@ const AllJob = () => {
             <tbody>
               {/* row 1 */}
               {tableData?.map((dataTable, idx) => (
-                <tr>
+                <tr key={idx}>
                   <th>{idx + 1}</th>
                   <td>{dataTable?.jobTitle}</td>
                   <td>{dataTable?.postDate}</td>
@@ -69,7 +68,7 @@ const AllJob = () => {
                   <td>
                     <Link to={`/job/${dataTable?._id}`}>
                       <button className="px-3 py-2 bg-gray-100 rounded-lg">
-                        View Details
+                        View Details.
                       </button>
                     </Link>
                   </td>

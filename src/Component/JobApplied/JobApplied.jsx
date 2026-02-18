@@ -29,12 +29,9 @@ const JobApplied = () => {
       // console.log("applied data is", res.data);
       setAppliedData(res.data);
     });
-  }, [filterValue, appliedData]);
+  }, [filterValue, user?.email]);
 
-  const handleFilterBtn = (e) => {
-    // console.log("alhamdulillah yor button is now woking");
-    // console.log("e is", e);
-  };
+ 
 
   return (
     <>
@@ -42,7 +39,7 @@ const JobApplied = () => {
       <div className="w-9/12 mx-auto">
         <div className="overflow-x-auto">
           <div className="my-10">
-            <label for="cars" className="">
+            <label   className="">
               Filter By JobCategory:
             </label>{" "}
             <br />
@@ -82,8 +79,8 @@ const JobApplied = () => {
               <tbody>
                 {/* row 1 */}
 
-                {appliedData.map((dataApplied) => (
-                  <tr>
+                {appliedData.map((dataApplied, idx) => (
+                  <tr key={idx}>
                     <th>1</th>
                     <td>{dataApplied?.userName}</td>
                     <td>{dataApplied?.userEmail}</td>

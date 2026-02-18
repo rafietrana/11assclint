@@ -61,7 +61,7 @@ const JobDetails = () => {
   return (
     <>
       <NabBarAll></NabBarAll>
-      <div className="w-9/12 mx-auto my-14 shadow-lg">
+      <div className="w-9/12 mx-auto my-14 ">
         {/* modal */}
 
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
