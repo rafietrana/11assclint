@@ -10,6 +10,9 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { IoLocationOutline } from "react-icons/io5";
+import { CiTimer } from "react-icons/ci";
+
 
 // Job Categories (Backend Synced)
 const jobsCategory = [
@@ -72,14 +75,14 @@ const JobsShowing = () => {
       </div>
 
       {/* Categories */}
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-10">
+      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
         {/* View All */}
         <li
           onClick={() => handleCategoryClick("viewall")}
           className="flex items-center gap-3 px-3 py-4 border rounded-lg cursor-pointer hover:border-green-500 hover:shadow transition"
         >
-          <FaDollarSign className="text-xl text-green-500" />
-          <span className="font-medium">View All</span>
+          <FaDollarSign className="text-sm text-green-500" />
+          <span className="text-sm">View All</span>
         </li>
 
         {jobsCategory.map((category, index) => {
@@ -94,8 +97,8 @@ const JobsShowing = () => {
                   : ""
               }`}
             >
-              <Icon className="text-xl text-green-500" />
-              <span className="font-medium">{category.name}</span>
+              <Icon className="text-sm text-green-500" />
+              <span className="text-sm ">{category.name}</span>
             </li>
           );
         })}
@@ -120,7 +123,7 @@ const JobsShowing = () => {
               />
 
               {/* Category Badge */}
-              <span className="self-start px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium">
+              <span className="self-start px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full font-medium">
                 {job.jobCategory}
               </span>
 
@@ -128,11 +131,24 @@ const JobsShowing = () => {
               <h2 className="text-lg font-semibold text-gray-800">
                 {job.jobTitle}
               </h2>
+              <div className="flex gap-2">
+                    <div className="flex items-center gap-1">
+                           <span className="text-sm"><IoLocationOutline /></span>
+                           <p className="text-sm text-gray-500">{job?.location}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                           <span className="text-sm"><CiTimer/></span>
+                           <p className="text-sm text-gray-500">30 Min ago</p>
+                    </div>
+              
+              </div>
+             <div className="flex gap-5 ">
+              <div >
+ 
+              <div className="flex items-center gap-1 text-gray-500 font-medium text-sm">
 
-              {/* Price */}
-              <div className="flex items-center gap-1 text-gray-700 font-medium text-sm">
                 <FaDollarSign />
-                <span>
+                <span className="text-gray-500">
                   {job.minPrice} - {job.maxPrice}
                 </span>
               </div>
@@ -142,9 +158,21 @@ const JobsShowing = () => {
                 <FaUsers />
                 <span>{job.applicantsNumber || 0} Applicants</span>
               </div>
+              </div>
+
+              {/* Right Section */}
+              <div className="flex gap-2">
+                  {
+                    job.tags.map((tag, idx) =>(
+                      <p className="text-sm text-gray-500 bg-[#EAF2FF] h-fit px-2 py-2 " key={idx}>{tag}</p>
+                    ))
+                  }
+              </div>
+             </div>
+       
 
               {/* Dates */}
-              <div className="flex flex-col gap-1 text-gray-500 text-sm">
+              <div className="grid grid-cols-2 flex-col  text-gray-500 text-sm">
                 <div className="flex items-center gap-1">
                   <FaCalendarAlt />
                   <span>Post: {formatDate(job.postDate)}</span>
