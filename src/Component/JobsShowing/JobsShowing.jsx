@@ -75,7 +75,7 @@ const JobsShowing = () => {
       </div>
 
       {/* Categories */}
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
+      <ul className="grid grid-cols-2  lg:w-10/12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
         {/* View All */}
         <li
           onClick={() => handleCategoryClick("viewall")}

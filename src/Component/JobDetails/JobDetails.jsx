@@ -6,149 +6,243 @@ import { toast } from "react-toastify";
 
 const JobDetails = () => {
   const data = useLoaderData();
-  // console.log("data is", data);
+  const { user } = useAuth();
 
   const currentDate = new Date();
-  const deadline = data?.applicationDeadline;
-
-  const { user } = useAuth();
+  const deadlineDate = new Date(data?.applicationDeadline);
 
   const handleApplyedSubmitButton = (e) => {
     e.preventDefault();
     const form = e.target;
+
     const userName = form.name.value;
     const userEmail = form.email.value;
     const resumi = form.cv.value;
-    const jobCategorys = data?.jobCategory;
-    const jobTitles = data?.jobTitle;
 
-    if (currentDate > deadline) {
-      return toast.error("deadline is over");
+    if (currentDate > deadlineDate) {
+      return toast.error("Application deadline is over");
     }
 
-    if (user?.email == data?.userEmail) {
-      return toast.error("you are not permited for this job");
+    if (user?.email === data?.createdBy) {
+      return toast.error("You cannot apply to your own job");
     }
 
     const appliedInfo = {
       userName,
       userEmail,
       resumi,
-      jobCategorys,
-      jobTitles,
+      jobCategory: data?.jobCategory,
+      jobTitle: data?.jobTitle,
+      jobId: data?._id,
     };
 
-    axios.post("http://localhost:5000/setApplied", appliedInfo).then((res) => {
-      // console.log("updated data is", res.data);
-
-      if (res.data.insertedId) {
-        axios
-          .patch(`http://localhost:5000/inccount/${data?._id}`)
-          .then((res) => {
-            // console.log(res.data);
-            // console.log("alhamdulillah sucessfully updated data mashallah");
-            if (res.data.modifiedCount > 0) {
-              toast.success("sucessfully updated data");
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
-            }
-          });
-      }
-    });
+    axios
+      .post("http://localhost:5000/setApplied", appliedInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          return axios.patch(
+            `http://localhost:5000/inccount/${data?._id}`
+          );
+        }
+      })
+      .then((res) => {
+        if (res?.data?.modifiedCount > 0) {
+          toast.success("Successfully applied!");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        }
+      })
+      .catch(() => toast.error("Something went wrong"));
   };
 
   return (
     <>
-      <NabBarAll></NabBarAll>
-      <div className="w-9/12 mx-auto my-14 ">
-        {/* modal */}
+      <NabBarAll />
 
-        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        <div className="grid lg:grid-cols-3 gap-10">
 
-        <dialog id="my_modal_3" className="modal">
-          <div className="modal-box">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                ✕
-              </button>
-            </form>
-            <form
-              className="my-5 space-y-5 "
-              onSubmit={handleApplyedSubmitButton}
-            >
-              <div>
-                <label htmlFor="name">Name</label> <br />
-                <input
-                  type="text"
-                  name="name"
-                  defaultValue={data?.userName}
-                  className="px-3 py-2 w-full outline-none border"
-                />
+          {/* LEFT SIDE */}
+          <div className="lg:col-span-2 space-y-6">
+
+            <img
+              src={data?.bannarImg}
+              alt="job banner"
+              className="w-full rounded-2xl  "
+            />
+
+            <div className="bg-white p-6 rounded-2xl  space-y-5">
+              <h1 className=" text-xl md:text-2xl  lg:text-3xl font-bold">
+                {data?.jobTitle}
+              </h1>
+
+              <div className="flex flex-wrap gap-3">
+                <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+                  {data?.jobCategory}
+                </span>
+                <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">
+                  {data?.type}
+                </span>
+                <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">
+                  {data?.location}
+                </span>
               </div>
-              <div>
-                <label htmlFor="email">Email</label> <br />
-                <input
-                  type="text"
-                  name="email"
-                  defaultValue={user?.email}
-                  className="px-3 py-2 w-full outline-none border"
-                />
-              </div>
-              <div>
-                <label htmlFor="resumiLink">Resumi Link</label> <br />
-                <input
-                  type="text"
-                  name="cv"
-                  className="px-3 py-2 w-full outline-none border"
-                />
-              </div>
-              <button className="bg-gray-100 px-3 py-2 rounded-lg">
-                Submit
-              </button>
-            </form>
+
+              <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+                {data?.jobDescription}
+              </p>
+            </div>
           </div>
-        </dialog>
 
-        {/* modal  end */}
+          {/* RIGHT SIDEBAR */}
+          <div className="space-y-6">
 
-        <div className="grid lg:grid-cols-2  grid-cols-1 gap-5 ">
-          <div className=" flex justify-center items-center ">
-            <img src={data?.bannarImg} alt="" />
-          </div>
-          <div className="  m-5 space-y-4">
-            <p>
-              <span className="font-medium mr-2">Job Title</span>
-              {data?.jobTitle}
-            </p>
-            <p>
-              {" "}
-              <span className="font-medium mr-2">Description</span>
-              {data?.jobDescription}
-            </p>
-            <p>
-              <span className="font-medium">Salary Range </span>
-              {`$${data?.minPrice} -$ ${data?.maxPrice}`}
-            </p>
-            <p>
-              <span className="mr-2 font-medium">Total Applicants Number</span>
-              {data?.applicantsNumber}
-            </p>
-            <p>
-              <span className="mr-2 font-medium">Application Deadline</span>
-              {data?.applicationDeadline}
-            </p>
+            <div className="bg-white shadow-xl rounded-2xl p-6 space-y-5 sticky top-24">
 
-            <button
-              className="btn"
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-            >
-              Apply Now
-            </button>
+              <h3 className="text-xl font-bold border-b pb-3">
+                Job Overview
+              </h3>
+
+              <div className="space-y-3 text-sm">
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Salary
+                  </span>
+                  <span className="font-semibold">
+                    ${data?.minPrice} - ${data?.maxPrice} / {data?.rate}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Category
+                  </span>
+                  <span>{data?.jobCategory}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Job Type
+                  </span>
+                  <span>{data?.type}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Location
+                  </span>
+                  <span>{data?.location}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Applicants
+                  </span>
+                  <span>{data?.applicantsNumber}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Deadline
+                  </span>
+                  <span className="text-red-500 font-semibold">
+                    {data?.applicationDeadline}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500 font-medium">
+                    Posted
+                  </span>
+                  <span>
+                    {new Date(data?.postDate).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* TAGS */}
+              <div className="pt-4 border-t">
+                <h4 className="font-semibold mb-2">
+                  Required Skills
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {data?.tags?.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                className="w-full bg-black text-white py-3 rounded-xl hover:opacity-90 transition mt-4"
+                onClick={() =>
+                  document.getElementById("apply_modal").showModal()
+                }
+              >
+                Apply Now
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* APPLY MODAL */}
+      <dialog id="apply_modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+
+          <form
+            className="space-y-4"
+            onSubmit={handleApplyedSubmitButton}
+          >
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                defaultValue={user?.displayName}
+                className="w-full border px-3 py-2 rounded-lg"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                defaultValue={user?.email}
+                className="w-full border px-3 py-2 rounded-lg"
+                readOnly
+              />
+            </div>
+
+            <div>
+              <label>Resume Link</label>
+              <input
+                type="url"
+                name="cv"
+                className="w-full border px-3 py-2 rounded-lg"
+                required
+              />
+            </div>
+
+            <button className="w-full bg-black text-white py-2 rounded-lg">
+              Submit Application
+            </button>
+          </form>
+        </div>
+      </dialog>
     </>
   );
 };
