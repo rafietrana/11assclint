@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 
-
 // Job Categories (Backend Synced)
 const jobsCategory = [
   { name: "Development", icon: FaLaptopCode },
@@ -57,8 +56,7 @@ const JobsShowing = () => {
       setFilteredJobs(jobs);
     } else {
       const filtered = jobs.filter(
-        (job) =>
-          job.jobCategory?.toLowerCase() === categoryName.toLowerCase()
+        (job) => job.jobCategory?.toLowerCase() === categoryName.toLowerCase(),
       );
       setFilteredJobs(filtered);
     }
@@ -132,44 +130,47 @@ const JobsShowing = () => {
                 {job.jobTitle}
               </h2>
               <div className="flex gap-2">
-                    <div className="flex items-center gap-1">
-                           <span className="text-sm"><IoLocationOutline /></span>
-                           <p className="text-sm text-gray-500">{job?.location}</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                           <span className="text-sm"><CiTimer/></span>
-                           <p className="text-sm text-gray-500">30 Min ago</p>
-                    </div>
-              
+                <div className="flex items-center gap-1">
+                  <span className="text-sm">
+                    <IoLocationOutline />
+                  </span>
+                  <p className="text-sm text-gray-500">{job?.location}</p>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-sm">
+                    <CiTimer />
+                  </span>
+                  <p className="text-sm text-gray-500">30 Min ago</p>
+                </div>
               </div>
-             <div className="flex gap-5 ">
-              <div >
- 
-              <div className="flex items-center gap-1 text-gray-500 font-medium text-sm">
+              <div className="flex gap-5 ">
+                <div>
+                  <div className="flex items-center gap-1 text-gray-500 font-medium text-sm">
+                    <FaDollarSign />
+                    <span className="text-gray-500">
+                      {job.minPrice} - {job.maxPrice}
+                    </span>
+                  </div>
 
-                <FaDollarSign />
-                <span className="text-gray-500">
-                  {job.minPrice} - {job.maxPrice}
-                </span>
-              </div>
+                  {/* Applicants */}
+                  <div className="flex   items-center gap-1 text-gray-500 text-sm">
+                    <FaUsers />
+                    <span className="">{job.applicantsNumber || 0} Applicants</span>
+                  </div>
+                </div>
 
-              {/* Applicants */}
-              <div className="flex items-center gap-1 text-gray-500 text-sm">
-                <FaUsers />
-                <span>{job.applicantsNumber || 0} Applicants</span>
+                {/* Right Section */}
+                <div className="flex flex-wrap gap-2">
+                  {job?.tags?.slice(0, 3).map((tag, idx) => (
+                    <p
+                      className="text-sm text-gray-500 bg-[#EAF2FF] h-fit px-2 py-2"
+                      key={idx}
+                    >
+                      {tag}
+                    </p>
+                  ))}
+                </div>
               </div>
-              </div>
-
-              {/* Right Section */}
-              <div className="flex gap-2">
-                  {
-                    job.tags.map((tag, idx) =>(
-                      <p className="text-sm text-gray-500 bg-[#EAF2FF] h-fit px-2 py-2 " key={idx}>{tag}</p>
-                    ))
-                  }
-              </div>
-             </div>
-       
 
               {/* Dates */}
               <div className="grid grid-cols-2 flex-col  text-gray-500 text-sm">
@@ -179,9 +180,7 @@ const JobsShowing = () => {
                 </div>
                 <div className="flex items-center gap-1">
                   <FaClock />
-                  <span>
-                    Deadline: {formatDate(job.applicationDeadline)}
-                  </span>
+                  <span>Deadline: {formatDate(job.applicationDeadline)}</span>
                 </div>
               </div>
 

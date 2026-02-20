@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ 
 import useAuth from "../../Hook/useAuth/useAuth";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
@@ -9,19 +9,12 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 
 const MyJob = () => {
-  // const [myAddedData, setMyAddedData] = useState([]);
+ 
   const { user } = useAuth();
 
-  // useEffect(() => {
-  //     axios(`http://localhost:5000/getmyjob/${user?.email}`)
-  //     .then(res => {
-  //         setMyAddedData(res?.data);
-  //     });
-  // });
+ 
 
-  // tanstack query  start
-
-  const { isPending, error, data } = useQuery({
+  const {  data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
       axios
@@ -94,7 +87,7 @@ const MyJob = () => {
                   </td>
                   <td>{`${dataAddedMy?.minPrice}-${dataAddedMy?.maxPrice}`}</td>
                   <td>{dataAddedMy?.jobTitle}</td>
-                  <td>{dataAddedMy?.userEmail}</td>
+                  <td>{dataAddedMy?.createdBy}</td>
                   <td>{dataAddedMy?.postDate}</td>
                   <td>{dataAddedMy?.applicationDeadline}</td>
                   <td>{dataAddedMy?.userName}</td>
