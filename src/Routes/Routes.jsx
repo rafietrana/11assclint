@@ -6,7 +6,7 @@ import SingUp from "../Component/SingUp";
 import AddJob from "../Component/AddJob/AddJob";
 import PrivetRoute from "./../Component/PrivetRoute/PrivetRoute";
 import Blog from "../Component/Blog/Blog";
-import BlogDetails from "../Component/BlogDetails/BlogDetails";
+ 
 import AllJob from "../Component/AllJob/AllJob";
 import JobDetails from "../Component/JobDetails/JobDetails";
 import MyJob from "../Component/MyJob/MyJob";
@@ -14,6 +14,7 @@ import Update from "../Component/Update/Update";
 import JobApplied from "../Component/JobApplied/JobApplied";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import WishList from "../Pages/WishList";
+import BlogsDetails from './../Component/BlogsSerction/BlogsDetails';
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogdetails/:id",
-        element: <BlogDetails></BlogDetails>,
+        element:  <BlogsDetails></BlogsDetails>,
       },
       {
         path: "/alljob",

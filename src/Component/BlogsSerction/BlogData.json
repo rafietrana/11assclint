@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "category": "News",
+    "title": "21 Job Interview Tips: How To Make a Great Impression",
+    "description": "Our mission is to create the world’s most sustainable healthcare company by creating high-quality healthcare products in iconic, sustainable packaging.",
+    "author": "Sarah Harding",
+    "date": "06 September",
+    "readTime": "8 mins to read",
+    "image": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/user1.png",
+    "authorImage": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/img-news1.png"
+  },
+  {
+    "id": 2,
+    "category": "Events",
+    "title": "39 Strengths and Weaknesses To Discuss in a Job Interview",
+    "description": "Our mission is to create the world’s most sustainable healthcare company by creating high-quality healthcare products in iconic, sustainable packaging.",
+    "author": "Steven Jobs",
+    "date": "06 September",
+    "readTime": "6 mins to read",
+    "image": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/user2.png",
+    "authorImage": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/img-news3.png"
+  },
+  {
+    "id": 3,
+    "category": "News",
+    "title": "Interview Question: Why Don't You Have a Degree?",
+    "description": "Learn how to respond if an interviewer asks you why you don't have a degree, and read example answers that can help you craft.",
+    "author": "Wiliam Kend",
+    "date": "06 September",
+    "readTime": "9 mins to read",
+    "image": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/user3.png",
+    "authorImage": "https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage1/img-news2.png"
+  }
+]
