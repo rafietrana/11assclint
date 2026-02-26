@@ -103,7 +103,7 @@ const TopRecruter = () => {
              <div>
 
                 <p className="text-2xl font-semibold mb-2">Job Tools Services</p>
-                <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet rutrum quam, id faucibus erat interdum a. Curabitur eget tortor a nulla interdum semper.</p>
+                <p className="text-sm">Job Tools Services provides reliable equipment, tools, and support solutions to help you complete every project efficiently and safely. From small tasks to large-scale jobs, we ensure you have the right tools and technical assistance to get the job done right—on time and within budget.</p>
     
              </div>
       </div> 
@@ -111,8 +111,9 @@ const TopRecruter = () => {
         <img className="hidden md:block" src="https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage2/planning-job.png" alt="" />
              <div>
 
-           <p className="text-2xl font-semibold mb-2">Job Tools Services</p>
-                <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet rutrum quam, id faucibus erat interdum a. Curabitur eget tortor a nulla interdum semper.</p>
+           <p className="text-2xl font-semibold mb-2">
+Planning a Job?</p>
+                <p className="text-sm">Start your project with confidence. From defining goals and setting timelines to budgeting and resource allocation, proper job planning ensures efficiency, reduces risks, and delivers successful results. Let’s turn your idea into a well-organized action plan.</p>
               
              </div>
       </div>

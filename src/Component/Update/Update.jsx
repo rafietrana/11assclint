@@ -19,7 +19,7 @@ import {
 } from "react-icons/fi";
 
 const Update = () => {
-  const { user } = useAuth();
+  const { user, theme } = useAuth();
   const { id } = useParams();
 
   const [startDate, setStartDate] = useState(new Date());
@@ -27,6 +27,11 @@ const Update = () => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
   const [loading, setLoading] = useState(true);
+
+
+
+  console.log('alhamdulillah theme is', theme);
+  
 
   // 🔹 Load Existing Data
   useEffect(() => {
