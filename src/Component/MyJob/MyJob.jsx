@@ -1,4 +1,3 @@
- 
 import useAuth from "../../Hook/useAuth/useAuth";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import axios from "axios";
@@ -9,12 +8,9 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 
 const MyJob = () => {
- 
   const { user } = useAuth();
 
- 
-
-  const {  data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
       axios
@@ -65,7 +61,6 @@ const MyJob = () => {
                 <th>userEmail</th>
                 <th>Job Posting Date</th>
                 <th>Application Deadline</th>
-                <th>User Name</th>
                 <th>jobCategory</th>
                 <th>applyNumber</th>
                 <th>Update Data</th>
@@ -90,7 +85,7 @@ const MyJob = () => {
                   <td>{dataAddedMy?.createdBy}</td>
                   <td>{dataAddedMy?.postDate}</td>
                   <td>{dataAddedMy?.applicationDeadline}</td>
-                  <td>{dataAddedMy?.userName}</td>
+
                   <td>{dataAddedMy?.jobCategory}</td>
                   <td>
                     <div className="flex justify-center items-center">

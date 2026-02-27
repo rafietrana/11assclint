@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 
-// Job Categories (Backend Synced)
+ 
 const jobsCategory = [
   { name: "Development", icon: FaLaptopCode },
   { name: "Design", icon: FaClock },
@@ -27,12 +27,39 @@ const JobsShowing = () => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  // ✅ Date Formatter (MM/DD/YYYY)
+
+  console.log('alhamdulillah job is ', jobs);
+  
+
+ 
   const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   };
+
+
+const getTimeAgo = (dateString) => {
+  if (!dateString) return "";
+
+  const now = new Date();
+  const postedDate = new Date(dateString);
+  const diffInSeconds = Math.floor((now - postedDate) / 1000);
+
+  const minutes = Math.floor(diffInSeconds / 60);
+  const hours = Math.floor(diffInSeconds / 3600);
+  const days = Math.floor(diffInSeconds / 86400);
+
+  if (minutes < 1) return "Just now";
+
+  if (minutes < 60)
+    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+
+  if (hours < 24)
+    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+
+  return `${days} day${days > 1 ? "s" : ""} ago`;
+};
 
   // Fetch Jobs
   useEffect(() => {
@@ -140,7 +167,7 @@ const JobsShowing = () => {
                   <span className="text-sm">
                     <CiTimer />
                   </span>
-                  <p className="text-sm text-gray-500">30 Min ago</p>
+                  <p className="text-sm text-gray-500">{getTimeAgo(job?.postDate)}</p>
                 </div>
               </div>
               <div className="flex gap-5 ">
