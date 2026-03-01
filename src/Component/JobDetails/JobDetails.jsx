@@ -53,7 +53,11 @@ const JobDetails = () => {
           }, 1500);
         }
       })
-      .catch(() => toast.error("Something went wrong"));
+      .catch((error) => {
+  console.error("error", error);
+  toast.error("Something went wrong");
+});
+   
   };
 
   return (

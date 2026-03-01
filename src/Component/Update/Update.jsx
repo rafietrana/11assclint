@@ -76,6 +76,7 @@ const Update = () => {
       userEmail: user?.email,
       minPrice: parseFloat(form.minPrice.value),
       maxPrice: parseFloat(form.maxPrice.value),
+      applicantsNumber: defultData?.applicantsNumber,
       postDate: defultData?.postDate,
       jobCategory: form.jobCategory.value,
       applicationDeadline: startDate

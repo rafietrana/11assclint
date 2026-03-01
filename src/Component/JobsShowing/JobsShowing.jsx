@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
+import useAuth from "../../Hook/useAuth/useAuth";
 
  
 const jobsCategory = [
@@ -26,9 +27,15 @@ const JobsShowing = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const {theme} = useAuth();
 
 
   console.log('alhamdulillah job is ', jobs);
+
+
+
+  console.log('alhamdulillah theme from jobShowing', theme);
+  
   
 
  
@@ -190,7 +197,7 @@ const getTimeAgo = (dateString) => {
                 <div className="flex flex-wrap gap-2">
                   {job?.tags?.slice(0, 3).map((tag, idx) => (
                     <p
-                      className="text-sm text-gray-500 bg-[#EAF2FF] h-fit px-2 py-2"
+                      className={`text-sm text-gray-500  h-fit px-2 py-2   ${theme === 'light'   ? "bg-[#EAF2FF]" : ""}`}
                       key={idx}
                     >
                       {tag}

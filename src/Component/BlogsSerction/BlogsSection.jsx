@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hook/useAuth/useAuth";
 
 const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);
+ 
 
   useEffect(() => {
     fetch("http://localhost:5000/getBlogs")
@@ -29,7 +31,7 @@ const BlogsSection = () => {
           <Link
             to={`/blogdetails/${blog._id}`}
             key={blog._id}
-            className="border rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300"
+            className="border rounded-2xl overflow-hidden   hover:shadow-xl transition duration-300"
           >
             {/* Banner Image */}
             <div className="h-56 overflow-hidden">

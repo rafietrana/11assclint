@@ -1,4 +1,5 @@
 import { FaStar, FaMapMarkerAlt } from "react-icons/fa";
+import useAuth from "../../Hook/useAuth/useAuth";
 const topRecruiterData = [
   {
     name: "LinkedIn",
@@ -44,6 +45,10 @@ const topRecruiterData = [
 
 
 const TopRecruter = () => {
+
+
+
+  const {theme} = useAuth();
   return (
     <div className="w-11/12 mx-auto my-16">
       {/* Heading */}
@@ -59,7 +64,7 @@ const TopRecruter = () => {
         {topRecruiterData.map((item, index) => (
           <div
             key={index}
-            className="border rounded-xl p-6 bg-white hover:shadow-lg transition"
+            className="border rounded-xl p-6  hover:shadow-lg transition"
           >
             {/* Logo */}
             <div className="w-14 h-14 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
@@ -98,7 +103,7 @@ const TopRecruter = () => {
 
 
  <div className="grid grid-cols-1 md:grid-cols-2 py-20 gap-11">
-         <div className="flex p-5 gap-8 items-center bg-[#FFF6F1] rounded-lg">
+         <div className={`flex p-5 gap-8 items-center ${theme == "light" ? "bg-[#FFF6F1]": ""} rounded-lg`}>
         <img className="hidden md:block" src="https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage2/job-tools.png" alt="" />
              <div>
 
@@ -107,7 +112,7 @@ const TopRecruter = () => {
     
              </div>
       </div> 
-           <div className="flex p-5 gap-8 items-center bg-[#EFF7FF] rounded-lg">
+         <div className={`flex p-5 gap-8 items-center ${theme == "light" ? "bg-[#FFF6F1]": ""} rounded-lg`}>
         <img className="hidden md:block" src="https://jobbox-html-frontend.vercel.app/assets/imgs/page/homepage2/planning-job.png" alt="" />
              <div>
 
