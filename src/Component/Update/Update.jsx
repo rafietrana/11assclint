@@ -28,9 +28,15 @@ const Update = () => {
   const [tagInput, setTagInput] = useState("");
   const [loading, setLoading] = useState(true);
 
+ 
+  
+
 
 
   console.log('alhamdulillah theme is', theme);
+
+
+
   
 
   // 🔹 Load Existing Data
@@ -112,12 +118,12 @@ const Update = () => {
     <>
       <NabBarAll />
 
-      <div className="min-h-screen bg-gray-50 py-16 px-4">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl  p-10">
+      <div className={`min-h-screen ${theme == 'light' ? "bg-gray-50" : ""} py-16 px-4`}>
+        <div className={`max-w-4xl mx-auto ${theme == 'light' ? 'bg-white' : ""} rounded-2xl  p-10`}>
 
           {/* Header */}
           <div className="mb-10 text-center">
-            <h2 className="text-3xl font-semibold text-gray-800">
+            <h2 className="text-3xl font-semibold ">
               Update Job Post
             </h2>
             <p className="text-gray-500 mt-2">
