@@ -14,6 +14,8 @@ const BlogsDetails = () => {
   const [comments, setComments] = useState([]);
   const { user } = useAuth();
 
+  const {theme} = useAuth();
+
   console.log("alhamdulillah user is", user);
 
   // ✅ Fetch Blog
@@ -126,17 +128,17 @@ const BlogsDetails = () => {
           />
           <div>
             <p className="font-semibold">{blog?.author?.name}</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm ">
               {blog?.date} • {blog?.readTime}
             </p>
           </div>
         </div>
 
         {/* Short Description */}
-        <p className="text-gray-700 text-lg mb-6">{blog?.shortDescription}</p>
+        <p className=" text-lg mb-6">{blog?.shortDescription}</p>
 
         {/* Long Description */}
-        <p className="text-gray-700 leading-relaxed mb-10">
+        <p className=" leading-relaxed mb-10">
           {blog?.longDescription}
         </p>
 
@@ -145,7 +147,7 @@ const BlogsDetails = () => {
           {blog?.content?.map((item, index) => (
             <div key={index}>
               <h2 className="text-2xl font-semibold mb-2">{item.heading}</h2>
-              <p className="text-gray-700 leading-relaxed">{item.paragraph}</p>
+              <p className=" leading-relaxed">{item.paragraph}</p>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../Hook/useAuth/useAuth";
+ 
 
 const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);

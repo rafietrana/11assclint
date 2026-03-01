@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import NabBarAll from "../../Shyred/NabBarAll/NabBarAll";
 import { useEffect, useState } from "react";
+import useAuth from "../../Hook/useAuth/useAuth";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -8,6 +9,7 @@ const BlogDetails = () => {
   const [viewData, setViewData] = useState({});
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const {theme} = useAuth()
 
   // ✅ Fetch blog details
   useEffect(() => {
@@ -71,7 +73,7 @@ const BlogDetails = () => {
         </h1>
 
         {/* Content */}
-        <p className="text-lg">
+        <p className={`text-lg ${theme == "dark" ? "text-green-500" : ""}`}>
           {viewData?.content}
         </p>
 
