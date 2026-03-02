@@ -70,9 +70,7 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://my-assignment-11-server-bice.vercel.app/getjob/${params.id}`,
-          ),
+          fetch(`https://11assserver.vercel.app/getjob/${params.id}`),
       },
       {
         path: "/myjob",

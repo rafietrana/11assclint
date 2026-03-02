@@ -5,7 +5,7 @@ const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("https://my-assignment-11-server-bice.vercel.app/getBlogs")
+    fetch("https://11assserver.vercel.app/getBlogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((err) => console.error(err));

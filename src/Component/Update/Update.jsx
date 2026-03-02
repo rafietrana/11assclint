@@ -32,19 +32,17 @@ const Update = () => {
 
   // 🔹 Load Existing Data
   useEffect(() => {
-    axios(`https://my-assignment-11-server-bice.vercel.app/getjob/${id}`).then(
-      (res) => {
-        const data = res.data;
-        setDefultData(data);
+    axios(`https://11assserver.vercel.app/getjob/${id}`).then((res) => {
+      const data = res.data;
+      setDefultData(data);
 
-        if (data?.applicationDeadline) {
-          setStartDate(new Date(data.applicationDeadline));
-        }
+      if (data?.applicationDeadline) {
+        setStartDate(new Date(data.applicationDeadline));
+      }
 
-        setTags(data?.tags || []);
-        setLoading(false);
-      },
-    );
+      setTags(data?.tags || []);
+      setLoading(false);
+    });
   }, [id]);
 
   // 🔹 Add Tag
@@ -87,7 +85,7 @@ const Update = () => {
 
     axios
       .put(
-        `https://my-assignment-11-server-bice.vercel.app/updatedata/${defultData?._id}`,
+        `https://11assserver.vercel.app/updatedata/${defultData?._id}`,
         updateInfo,
       )
       .then((res) => {

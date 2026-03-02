@@ -51,7 +51,7 @@ const AddJob = () => {
       };
 
       const res = await axios.post(
-        "https://my-assignment-11-server-bice.vercel.app/jobpost",
+        "https://11assserver.vercel.app/jobpost",
         jobInfo,
       );
 

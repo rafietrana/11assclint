@@ -8,9 +8,7 @@ const AllJob = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch(
-      `https://my-assignment-11-server-bice.vercel.app/getTableCard?search=${searchText}`,
-    )
+    fetch(`https://11assserver.vercel.app/getTableCard?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setTableData(data);

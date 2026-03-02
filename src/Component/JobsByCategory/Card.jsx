@@ -9,10 +9,7 @@ const Card = ({ dataCardJob }) => {
   const handleWishlist = (cardData) => {
     console.log("alhamdulillah dataCard job is", cardData);
     axios
-      .post(
-        "https://my-assignment-11-server-bice.vercel.app/postwish",
-        cardData,
-      )
+      .post("https://11assserver.vercel.app/postwish", cardData)
       .then((res) => {
         console.log(res.data);
       })

@@ -37,14 +37,11 @@ const JobDetails = () => {
     };
 
     axios
-      .post(
-        "https://my-assignment-11-server-bice.vercel.app/setApplied",
-        appliedInfo,
-      )
+      .post("https://11assserver.vercel.app/setApplied", appliedInfo)
       .then((res) => {
         if (res.data.insertedId) {
           return axios.patch(
-            `https://my-assignment-11-server-bice.vercel.app/inccount/${data?._id}`,
+            `https://11assserver.vercel.app/inccount/${data?._id}`,
           );
         }
       })

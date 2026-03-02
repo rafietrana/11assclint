@@ -12,7 +12,7 @@ const JobsByCategory = () => {
   //  console.log('JobCardData', JobCardData);
 
   //   useEffect(()=>{
-  //        axios('https://my-assignment-11-server-bice.vercel.app/getJobCard')
+  //        axios('https://11assserver.vercel.app/getJobCard')
   //        .then(res =>{
   //            console.log(res.data);
   //           setJobCardData(res.data)
@@ -23,11 +23,9 @@ const JobsByCategory = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      axios("https://my-assignment-11-server-bice.vercel.app/getJobCard").then(
-        (res) => {
-          return res.data;
-        },
-      ),
+      axios("https://11assserver.vercel.app/getJobCard").then((res) => {
+        return res.data;
+      }),
   });
 
   if (isLoading) {

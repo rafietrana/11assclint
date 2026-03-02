@@ -14,12 +14,9 @@ const MyJob = () => {
     queryKey: ["repoData"],
     queryFn: () =>
       axios
-        .get(
-          `https://my-assignment-11-server-bice.vercel.app/getmyjob/${user?.email}`,
-          {
-            withCredentials: true,
-          },
-        )
+        .get(`https://11assserver.vercel.app/getmyjob/${user?.email}`, {
+          withCredentials: true,
+        })
         .then((res) => res.data),
   });
 
@@ -37,9 +34,7 @@ const MyJob = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(
-            `https://my-assignment-11-server-bice.vercel.app/deletedata/${id}`,
-          )
+          .delete(`https://11assserver.vercel.app/deletedata/${id}`)
           .then((res) => {
             // console.log(res.data);
             if (res.data.deletedCount > 0) {

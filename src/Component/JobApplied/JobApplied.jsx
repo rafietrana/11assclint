@@ -23,7 +23,7 @@ const JobApplied = () => {
 
   useEffect(() => {
     axios(
-      `https://my-assignment-11-server-bice.vercel.app/gets?email=${user?.email}&filter=${filterValue}`,
+      `https://11assserver.vercel.app/gets?email=${user?.email}&filter=${filterValue}`,
       { withCredentials: true },
     ).then((res) => {
       // console.log("applied data is", res.data);

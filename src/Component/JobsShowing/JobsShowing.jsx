@@ -63,7 +63,7 @@ const JobsShowing = () => {
     const fetchJobs = async () => {
       try {
         const res = await axios.get(
-          "https://my-assignment-11-server-bice.vercel.app/getJobCard",
+          "https://11assserver.vercel.app/getJobCard",
         );
         setJobs(res.data);
         setFilteredJobs(res.data);

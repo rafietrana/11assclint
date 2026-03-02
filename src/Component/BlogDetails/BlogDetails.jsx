@@ -13,7 +13,7 @@ const BlogDetails = () => {
 
   // ✅ Fetch blog details
   useEffect(() => {
-    fetch(`https://my-assignment-11-server-bice.vercel.app/finalcard/${id}`)
+    fetch(`https://11assserver.vercel.app/finalcard/${id}`)
       .then((res) => res.json())
       .then((data) => setViewData(data))
       .catch((err) => console.log(err));
@@ -21,7 +21,7 @@ const BlogDetails = () => {
 
   // ✅ Fetch comments by blog id
   useEffect(() => {
-    fetch(`https://my-assignment-11-server-bice.vercel.app/comments/${id}`)
+    fetch(`https://11assserver.vercel.app/comments/${id}`)
       .then((res) => res.json())
       .then((data) => setComments(data))
       .catch((err) => console.log(err));
@@ -37,7 +37,7 @@ const BlogDetails = () => {
       createdAt: new Date(),
     };
 
-    fetch("https://my-assignment-11-server-bice.vercel.app/comments", {
+    fetch("https://11assserver.vercel.app/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

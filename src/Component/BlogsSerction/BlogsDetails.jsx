@@ -23,7 +23,7 @@ const BlogsDetails = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `https://my-assignment-11-server-bice.vercel.app/finalcard/${id}`,
+          `https://11assserver.vercel.app/finalcard/${id}`,
         );
         setBlog(response.data);
       } catch (error) {
@@ -41,7 +41,7 @@ const BlogsDetails = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `https://my-assignment-11-server-bice.vercel.app/comments/${id}`,
+          `https://11assserver.vercel.app/comments/${id}`,
         );
         setComments(response.data);
       } catch (error) {
@@ -67,7 +67,7 @@ const BlogsDetails = () => {
 
     try {
       const response = await axios.post(
-        "https://my-assignment-11-server-bice.vercel.app/comments",
+        "https://11assserver.vercel.app/comments",
         newComment,
       );
       setComments([response.data, ...comments]); // newest first
