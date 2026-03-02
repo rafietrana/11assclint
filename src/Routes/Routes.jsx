@@ -6,7 +6,7 @@ import SingUp from "../Component/SingUp";
 import AddJob from "../Component/AddJob/AddJob";
 import PrivetRoute from "./../Component/PrivetRoute/PrivetRoute";
 import Blog from "../Component/Blog/Blog";
- 
+
 import AllJob from "../Component/AllJob/AllJob";
 import JobDetails from "../Component/JobDetails/JobDetails";
 import MyJob from "../Component/MyJob/MyJob";
@@ -14,7 +14,7 @@ import Update from "../Component/Update/Update";
 import JobApplied from "../Component/JobApplied/JobApplied";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import WishList from "../Pages/WishList";
-import BlogsDetails from './../Component/BlogsSerction/BlogsDetails';
+import BlogsDetails from "./../Component/BlogsSerction/BlogsDetails";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogdetails/:id",
-        element:  <BlogsDetails></BlogsDetails>,
+        element: <BlogsDetails></BlogsDetails>,
       },
       {
         path: "/alljob",
@@ -70,7 +70,9 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/getjob/${params.id}`),
+          fetch(
+            `https://my-assignment-11-server-bice.vercel.app/getjob/${params.id}`,
+          ),
       },
       {
         path: "/myjob",

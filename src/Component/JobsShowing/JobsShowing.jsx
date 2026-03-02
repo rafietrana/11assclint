@@ -14,7 +14,6 @@ import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import useAuth from "../../Hook/useAuth/useAuth";
 
- 
 const jobsCategory = [
   { name: "Development", icon: FaLaptopCode },
   { name: "Design", icon: FaClock },
@@ -27,52 +26,45 @@ const JobsShowing = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const {theme} = useAuth();
+  const { theme } = useAuth();
 
+  console.log("alhamdulillah job is ", jobs);
 
-  console.log('alhamdulillah job is ', jobs);
+  console.log("alhamdulillah theme from jobShowing", theme);
 
-
-
-  console.log('alhamdulillah theme from jobShowing', theme);
-  
-  
-
- 
   const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   };
 
+  const getTimeAgo = (dateString) => {
+    if (!dateString) return "";
 
-const getTimeAgo = (dateString) => {
-  if (!dateString) return "";
+    const now = new Date();
+    const postedDate = new Date(dateString);
+    const diffInSeconds = Math.floor((now - postedDate) / 1000);
 
-  const now = new Date();
-  const postedDate = new Date(dateString);
-  const diffInSeconds = Math.floor((now - postedDate) / 1000);
+    const minutes = Math.floor(diffInSeconds / 60);
+    const hours = Math.floor(diffInSeconds / 3600);
+    const days = Math.floor(diffInSeconds / 86400);
 
-  const minutes = Math.floor(diffInSeconds / 60);
-  const hours = Math.floor(diffInSeconds / 3600);
-  const days = Math.floor(diffInSeconds / 86400);
+    if (minutes < 1) return "Just now";
 
-  if (minutes < 1) return "Just now";
+    if (minutes < 60) return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
 
-  if (minutes < 60)
-    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
 
-  if (hours < 24)
-    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-
-  return `${days} day${days > 1 ? "s" : ""} ago`;
-};
+    return `${days} day${days > 1 ? "s" : ""} ago`;
+  };
 
   // Fetch Jobs
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/getJobCard");
+        const res = await axios.get(
+          "https://my-assignment-11-server-bice.vercel.app/getJobCard",
+        );
         setJobs(res.data);
         setFilteredJobs(res.data);
       } catch (error) {
@@ -174,7 +166,9 @@ const getTimeAgo = (dateString) => {
                   <span className="text-sm">
                     <CiTimer />
                   </span>
-                  <p className="text-sm text-gray-500">{getTimeAgo(job?.postDate)}</p>
+                  <p className="text-sm text-gray-500">
+                    {getTimeAgo(job?.postDate)}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-5 ">
@@ -189,7 +183,9 @@ const getTimeAgo = (dateString) => {
                   {/* Applicants */}
                   <div className="flex   items-center gap-1 text-gray-500 text-sm">
                     <FaUsers />
-                    <span className="">{job.applicantsNumber || 0} Applicants</span>
+                    <span className="">
+                      {job.applicantsNumber || 0} Applicants
+                    </span>
                   </div>
                 </div>
 
@@ -197,7 +193,7 @@ const getTimeAgo = (dateString) => {
                 <div className="flex flex-wrap gap-2">
                   {job?.tags?.slice(0, 3).map((tag, idx) => (
                     <p
-                      className={`text-sm text-gray-500  h-fit px-2 py-2   ${theme === 'light'   ? "bg-[#EAF2FF]" : ""}`}
+                      className={`text-sm text-gray-500  h-fit px-2 py-2   ${theme === "light" ? "bg-[#EAF2FF]" : ""}`}
                       key={idx}
                     >
                       {tag}

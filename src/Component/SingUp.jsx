@@ -23,9 +23,13 @@ const SignUp = () => {
         updateUserInfo(name, photo);
 
         const loggedUser = { email: user?.email };
-        axios.post("http://localhost:5000/jwt", loggedUser, {
-          withCredentials: true,
-        });
+        axios.post(
+          "https://my-assignment-11-server-bice.vercel.app/jwt",
+          loggedUser,
+          {
+            withCredentials: true,
+          },
+        );
       })
       .catch((error) => {
         console.error(error);

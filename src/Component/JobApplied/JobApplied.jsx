@@ -23,7 +23,7 @@ const JobApplied = () => {
 
   useEffect(() => {
     axios(
-      `http://localhost:5000/gets?email=${user?.email}&filter=${filterValue}`,
+      `https://my-assignment-11-server-bice.vercel.app/gets?email=${user?.email}&filter=${filterValue}`,
       { withCredentials: true },
     ).then((res) => {
       // console.log("applied data is", res.data);
@@ -31,18 +31,13 @@ const JobApplied = () => {
     });
   }, [filterValue, user?.email]);
 
- 
-
   return (
     <>
       <NabBarAll></NabBarAll>
       <div className="w-9/12 mx-auto">
         <div className="overflow-x-auto">
           <div className="my-10">
-            <label   className="">
-              Filter By JobCategory:
-            </label>{" "}
-            <br />
+            <label className="">Filter By JobCategory:</label> <br />
             <br />
             <select
               onChange={(e) => setFilterValue(e.target.value)}

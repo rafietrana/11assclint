@@ -14,7 +14,7 @@ const BlogsDetails = () => {
   const [comments, setComments] = useState([]);
   const { user } = useAuth();
 
-  const {theme} = useAuth();
+  const { theme } = useAuth();
 
   console.log("alhamdulillah user is", user);
 
@@ -23,7 +23,7 @@ const BlogsDetails = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/finalcard/${id}`,
+          `https://my-assignment-11-server-bice.vercel.app/finalcard/${id}`,
         );
         setBlog(response.data);
       } catch (error) {
@@ -41,7 +41,7 @@ const BlogsDetails = () => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/comments/${id}`,
+          `https://my-assignment-11-server-bice.vercel.app/comments/${id}`,
         );
         setComments(response.data);
       } catch (error) {
@@ -67,7 +67,7 @@ const BlogsDetails = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/comments",
+        "https://my-assignment-11-server-bice.vercel.app/comments",
         newComment,
       );
       setComments([response.data, ...comments]); // newest first
@@ -138,9 +138,7 @@ const BlogsDetails = () => {
         <p className=" text-lg mb-6">{blog?.shortDescription}</p>
 
         {/* Long Description */}
-        <p className=" leading-relaxed mb-10">
-          {blog?.longDescription}
-        </p>
+        <p className=" leading-relaxed mb-10">{blog?.longDescription}</p>
 
         {/* Content Sections */}
         <div className="space-y-8">
@@ -164,74 +162,74 @@ const BlogsDetails = () => {
           ))}
         </div>
 
-       {/* ================= COMMENTS SECTION ================= */}
-<div className="mt-16 border-t pt-10">
-  <h2 className="text-2xl font-bold mb-6">
-    Comments ({comments.length})
-  </h2>
+        {/* ================= COMMENTS SECTION ================= */}
+        <div className="mt-16 border-t pt-10">
+          <h2 className="text-2xl font-bold mb-6">
+            Comments ({comments.length})
+          </h2>
 
-  {/* Comment Form */}
-  <form
-    onSubmit={handleCommentSubmit}
-    className="flex flex-col gap-4 mb-10"
-  >
-    <textarea
-      value={commentText}
-      onChange={(e) => setCommentText(e.target.value)}
-      className="border p-3 rounded-lg"
-      placeholder="Write your comment..."
-      required
-    />
+          {/* Comment Form */}
+          <form
+            onSubmit={handleCommentSubmit}
+            className="flex flex-col gap-4 mb-10"
+          >
+            <textarea
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              className="border p-3 rounded-lg"
+              placeholder="Write your comment..."
+              required
+            />
 
-    <button
-      type="submit"
-      className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-    >
-      Submit Comment
-    </button>
-  </form>
+            <button
+              type="submit"
+              className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Submit Comment
+            </button>
+          </form>
 
-  {/* Show Comments */}
-  <div className="space-y-4">
-    {comments.length === 0 && (
-      <p className="text-gray-500">No comments yet. Be the first!</p>
-    )}
+          {/* Show Comments */}
+          <div className="space-y-4">
+            {comments.length === 0 && (
+              <p className="text-gray-500">No comments yet. Be the first!</p>
+            )}
 
-    {comments.map((c) => (
-      <div
-        key={c._id}
-        className="border p-4 rounded-lg shadow-sm flex items-start gap-4"
-      >
-        {/* User Photo */}
-        {c.userPhoto ? (
-          <img
-            src={c.userPhoto}
-            alt={c.userName || "User"}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-        ) : (
-          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white">
-            {c.userName?.charAt(0).toUpperCase() || "U"}
+            {comments.map((c) => (
+              <div
+                key={c._id}
+                className="border p-4 rounded-lg shadow-sm flex items-start gap-4"
+              >
+                {/* User Photo */}
+                {c.userPhoto ? (
+                  <img
+                    src={c.userPhoto}
+                    alt={c.userName || "User"}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-white">
+                    {c.userName?.charAt(0).toUpperCase() || "U"}
+                  </div>
+                )}
+
+                <div className="flex-1">
+                  {/* User Name */}
+                  <p className="font-semibold">{c.userName || "Anonymous"}</p>
+
+                  {/* Comment Text */}
+                  <p className="mb-1">{c.text}</p>
+
+                  {/* Comment Date */}
+                  <small className="text-gray-400 text-sm">
+                    {new Date(c.createdAt).toLocaleString()}
+                  </small>
+                </div>
+              </div>
+            ))}
           </div>
-        )}
-
-        <div className="flex-1">
-          {/* User Name */}
-          <p className="font-semibold">{c.userName || "Anonymous"}</p>
-
-          {/* Comment Text */}
-          <p className="mb-1">{c.text}</p>
-
-          {/* Comment Date */}
-          <small className="text-gray-400 text-sm">
-            {new Date(c.createdAt).toLocaleString()}
-          </small>
         </div>
-      </div>
-    ))}
-  </div>
-</div>
-{/* ===================================================== */}
+        {/* ===================================================== */}
       </div>
     </div>
   );

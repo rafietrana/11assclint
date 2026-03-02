@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
- 
 
 const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);
- 
 
   useEffect(() => {
-    fetch("http://localhost:5000/getBlogs")
+    fetch("https://my-assignment-11-server-bice.vercel.app/getBlogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((err) => console.error(err));
@@ -71,15 +69,11 @@ const BlogsSection = () => {
                     <p className="font-medium text-gray-700">
                       {blog?.author?.name}
                     </p>
-                    <p className="text-xs">
-                      {blog?.date}
-                    </p>
+                    <p className="text-xs">{blog?.date}</p>
                   </div>
                 </div>
 
-                <span className="text-xs">
-                  {blog?.readTime}
-                </span>
+                <span className="text-xs">{blog?.readTime}</span>
               </div>
 
               {/* Views + Likes */}

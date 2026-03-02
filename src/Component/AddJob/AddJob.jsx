@@ -43,14 +43,17 @@ const AddJob = () => {
         minPrice: Number(form.priceFrom.value),
         maxPrice: Number(form.priceTo.value),
         rate: form.rate.value,
-        tags: form.tags.value.split(",").map(tag => tag.trim()),
+        tags: form.tags.value.split(",").map((tag) => tag.trim()),
         bannarImg: imageUrl,
         jobDescription: form.description.value,
         applicantsNumber: 0,
-        createdBy: user?.email || "anonymous"
+        createdBy: user?.email || "anonymous",
       };
 
-      const res = await axios.post("http://localhost:5000/jobpost", jobInfo);
+      const res = await axios.post(
+        "https://my-assignment-11-server-bice.vercel.app/jobpost",
+        jobInfo,
+      );
 
       if (res.data?.insertedId) {
         toast.success("Job added successfully");
@@ -92,9 +95,7 @@ const AddJob = () => {
 
           {/* Job Type */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">
-              Job Type
-            </label>
+            <label className="block text-sm text-gray-600 mb-1">Job Type</label>
             <select
               required
               name="type"
@@ -110,9 +111,7 @@ const AddJob = () => {
 
           {/* Category */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">
-              Category
-            </label>
+            <label className="block text-sm text-gray-600 mb-1">Category</label>
             <select
               required
               name="category"
@@ -142,9 +141,7 @@ const AddJob = () => {
 
           {/* Location */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">
-              Location
-            </label>
+            <label className="block text-sm text-gray-600 mb-1">Location</label>
             <input
               required
               type="text"
@@ -181,9 +178,7 @@ const AddJob = () => {
 
           {/* Rate */}
           <div>
-            <label className="block text-sm text-gray-600 mb-1">
-              Rate
-            </label>
+            <label className="block text-sm text-gray-600 mb-1">Rate</label>
             <select
               required
               name="rate"

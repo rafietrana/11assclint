@@ -37,11 +37,14 @@ const JobDetails = () => {
     };
 
     axios
-      .post("http://localhost:5000/setApplied", appliedInfo)
+      .post(
+        "https://my-assignment-11-server-bice.vercel.app/setApplied",
+        appliedInfo,
+      )
       .then((res) => {
         if (res.data.insertedId) {
           return axios.patch(
-            `http://localhost:5000/inccount/${data?._id}`
+            `https://my-assignment-11-server-bice.vercel.app/inccount/${data?._id}`,
           );
         }
       })
@@ -54,10 +57,9 @@ const JobDetails = () => {
         }
       })
       .catch((error) => {
-  console.error("error", error);
-  toast.error("Something went wrong");
-});
-   
+        console.error("error", error);
+        toast.error("Something went wrong");
+      });
   };
 
   return (
@@ -66,10 +68,8 @@ const JobDetails = () => {
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-3 gap-10">
-
           {/* LEFT SIDE */}
           <div className="lg:col-span-2 space-y-6">
-
             <img
               src={data?.bannarImg}
               alt="job banner"
@@ -101,76 +101,53 @@ const JobDetails = () => {
 
           {/* RIGHT SIDEBAR */}
           <div className="space-y-6">
-
             <div className="bg-white shadow-xl rounded-2xl p-6 space-y-5 sticky top-24">
-
-              <h3 className="text-xl font-bold border-b pb-3">
-                Job Overview
-              </h3>
+              <h3 className="text-xl font-bold border-b pb-3">Job Overview</h3>
 
               <div className="space-y-3 text-sm">
-
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Salary
-                  </span>
+                  <span className="text-gray-500 font-medium">Salary</span>
                   <span className="font-semibold">
                     ${data?.minPrice} - ${data?.maxPrice} / {data?.rate}
                   </span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Category
-                  </span>
+                  <span className="text-gray-500 font-medium">Category</span>
                   <span>{data?.jobCategory}</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Job Type
-                  </span>
+                  <span className="text-gray-500 font-medium">Job Type</span>
                   <span>{data?.type}</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Location
-                  </span>
+                  <span className="text-gray-500 font-medium">Location</span>
                   <span>{data?.location}</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Applicants
-                  </span>
+                  <span className="text-gray-500 font-medium">Applicants</span>
                   <span>{data?.applicantsNumber}</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Deadline
-                  </span>
+                  <span className="text-gray-500 font-medium">Deadline</span>
                   <span className="text-red-500 font-semibold">
                     {data?.applicationDeadline}
                   </span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span className="text-gray-500 font-medium">
-                    Posted
-                  </span>
-                  <span>
-                    {new Date(data?.postDate).toLocaleDateString()}
-                  </span>
+                  <span className="text-gray-500 font-medium">Posted</span>
+                  <span>{new Date(data?.postDate).toLocaleDateString()}</span>
                 </div>
               </div>
 
               {/* TAGS */}
               <div className="pt-4 border-t">
-                <h4 className="font-semibold mb-2">
-                  Required Skills
-                </h4>
+                <h4 className="font-semibold mb-2">Required Skills</h4>
                 <div className="flex flex-wrap gap-2">
                   {data?.tags?.map((tag, index) => (
                     <span
@@ -205,10 +182,7 @@ const JobDetails = () => {
             </button>
           </form>
 
-          <form
-            className="space-y-4"
-            onSubmit={handleApplyedSubmitButton}
-          >
+          <form className="space-y-4" onSubmit={handleApplyedSubmitButton}>
             <div>
               <label>Name</label>
               <input

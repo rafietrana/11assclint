@@ -8,10 +8,12 @@ const WishList = () => {
   const [wishData, setWishData] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:5000/getwish").then((res) => {
-      console.log("wish data is", res.data);
-      setWishData(res?.data);
-    });
+    axios("https://my-assignment-11-server-bice.vercel.app/getwish").then(
+      (res) => {
+        console.log("wish data is", res.data);
+        setWishData(res?.data);
+      },
+    );
   });
   return (
     <div>

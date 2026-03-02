@@ -28,30 +28,23 @@ const Update = () => {
   const [tagInput, setTagInput] = useState("");
   const [loading, setLoading] = useState(true);
 
- 
-  
-
-
-
-  console.log('alhamdulillah theme is', theme);
-
-
-
-  
+  console.log("alhamdulillah theme is", theme);
 
   // 🔹 Load Existing Data
   useEffect(() => {
-    axios(`http://localhost:5000/getjob/${id}`).then((res) => {
-      const data = res.data;
-      setDefultData(data);
+    axios(`https://my-assignment-11-server-bice.vercel.app/getjob/${id}`).then(
+      (res) => {
+        const data = res.data;
+        setDefultData(data);
 
-      if (data?.applicationDeadline) {
-        setStartDate(new Date(data.applicationDeadline));
-      }
+        if (data?.applicationDeadline) {
+          setStartDate(new Date(data.applicationDeadline));
+        }
 
-      setTags(data?.tags || []);
-      setLoading(false);
-    });
+        setTags(data?.tags || []);
+        setLoading(false);
+      },
+    );
   }, [id]);
 
   // 🔹 Add Tag
@@ -93,7 +86,10 @@ const Update = () => {
     };
 
     axios
-      .put(`http://localhost:5000/updatedata/${defultData?._id}`, updateInfo)
+      .put(
+        `https://my-assignment-11-server-bice.vercel.app/updatedata/${defultData?._id}`,
+        updateInfo,
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Job Updated Successfully 🚀");
@@ -118,21 +114,21 @@ const Update = () => {
     <>
       <NabBarAll />
 
-      <div className={`min-h-screen ${theme == 'light' ? "bg-gray-50" : ""} py-16 px-4`}>
-        <div className={`max-w-4xl mx-auto ${theme == 'light' ? 'bg-white' : ""} rounded-2xl  p-10`}>
-
+      <div
+        className={`min-h-screen ${theme == "light" ? "bg-gray-50" : ""} py-16 px-4`}
+      >
+        <div
+          className={`max-w-4xl mx-auto ${theme == "light" ? "bg-white" : ""} rounded-2xl  p-10`}
+        >
           {/* Header */}
           <div className="mb-10 text-center">
-            <h2 className="text-3xl font-semibold ">
-              Update Job Post
-            </h2>
+            <h2 className="text-3xl font-semibold ">Update Job Post</h2>
             <p className="text-gray-500 mt-2">
               Keep your job listing updated and optimized ✨
             </p>
           </div>
 
           <form onSubmit={handleUpdateBtn} className="space-y-8">
-
             {/* Job Title */}
             <div>
               <label className="label">
@@ -304,7 +300,6 @@ const Update = () => {
                 Update Job
               </button>
             </div>
-
           </form>
         </div>
       </div>

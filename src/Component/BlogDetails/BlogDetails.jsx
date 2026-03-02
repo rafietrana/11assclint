@@ -9,11 +9,11 @@ const BlogDetails = () => {
   const [viewData, setViewData] = useState({});
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
-  const {theme} = useAuth()
+  const { theme } = useAuth();
 
   // ✅ Fetch blog details
   useEffect(() => {
-    fetch(`http://localhost:5000/finalcard/${id}`)
+    fetch(`https://my-assignment-11-server-bice.vercel.app/finalcard/${id}`)
       .then((res) => res.json())
       .then((data) => setViewData(data))
       .catch((err) => console.log(err));
@@ -21,7 +21,7 @@ const BlogDetails = () => {
 
   // ✅ Fetch comments by blog id
   useEffect(() => {
-    fetch(`http://localhost:5000/comments/${id}`)
+    fetch(`https://my-assignment-11-server-bice.vercel.app/comments/${id}`)
       .then((res) => res.json())
       .then((data) => setComments(data))
       .catch((err) => console.log(err));
@@ -37,7 +37,7 @@ const BlogDetails = () => {
       createdAt: new Date(),
     };
 
-    fetch("http://localhost:5000/comments", {
+    fetch("https://my-assignment-11-server-bice.vercel.app/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,6 @@ const BlogDetails = () => {
       <NabBarAll />
 
       <div className="w-9/12 mx-auto my-24 space-y-6">
-
         {/* Blog Image */}
         <div className="w-full h-[500px] overflow-hidden">
           <img
@@ -68,9 +67,7 @@ const BlogDetails = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl font-bold">
-          {viewData?.title}
-        </h1>
+        <h1 className="text-3xl font-bold">{viewData?.title}</h1>
 
         {/* Content */}
         <p className={`text-lg ${theme == "dark" ? "text-green-500" : ""}`}>
@@ -107,10 +104,7 @@ const BlogDetails = () => {
           {/* Show Comments */}
           <div className="mt-6 space-y-3">
             {comments.map((c) => (
-              <div
-                key={c._id}
-                className="border p-3 rounded shadow-sm"
-              >
+              <div key={c._id} className="border p-3 rounded shadow-sm">
                 <p>{c.text}</p>
                 <small className="text-gray-500">
                   {new Date(c.createdAt).toLocaleString()}
@@ -119,7 +113,6 @@ const BlogDetails = () => {
             ))}
           </div>
         </div>
-
       </div>
     </>
   );
